@@ -1,0 +1,23 @@
+{
+  "name": "soulmara-website-prime",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulmara-mx/soulmara-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soulmara-mx/soulmara-website/issues"
+  },
+  "homepage": "https://github.com/soulmara-mx/soulmara-website#readme",
+  "description": "",
+  "dependencies": {
+    "subset-font": "^2.7.0"
+  }
+}

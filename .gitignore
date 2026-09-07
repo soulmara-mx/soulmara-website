@@ -1,0 +1,23 @@
+# Heavy original source images (not used by the site — only the optimized
+# versions in assets/carousel-img/web/ and assets/img/hero.jpg are served)
+assets/carousel-img/*.jpg
+assets/carousel-img/*.jpeg
+assets/carousel-img/*.png
+assets/img/CaleidoscopiA-201.jpg
+
+# Keep the optimized web slides
+!assets/carousel-img/web/
+
+# Licensed source font — do NOT publish. Only the subset web fonts
+# (milk-and-honey.woff2 / .woff) are committed and served.
+assets/fonts/*.otf
+assets/fonts/*.ttf
+
+# Node artifacts from the font-subsetting tool (keep package.json + the
+# tool script so the subset can be regenerated; ignore installed deps)
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log

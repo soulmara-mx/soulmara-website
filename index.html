@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOULMARA</title>
+  <meta name="description" content="SOULMARA — sitio oficial de la banda." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <!-- ============ INTRO / SPLASH ANIMATION ============ -->
+  <div id="intro" class="intro" aria-hidden="true">
+    <!-- Stacked SOUL / MARA logotype (real brand asset), fades in then
+         zooms into the O of SOUL (the moon/star). Zoom origin is set on
+         .intro__logo via CSS to the measured center of the O. -->
+    <div class="intro__logo" id="introLogo">
+      <img
+        src="./assets/img/logo-stacked-dark.png"
+        alt="SOULMARA"
+        class="intro__img"
+        id="introImg"
+      />
+    </div>
+  </div>
+
+  <!-- ============ MAIN SITE ============ -->
+  <div id="site" class="site">
+    <!-- Top navigation -->
+    <header class="nav">
+      <nav class="nav__links nav__links--left" aria-label="Principal">
+        <a href="#musica">MÚSICA</a>
+        <a href="#nosotros">NOSOTROS</a>
+      </nav>
+
+      <a href="#top" class="nav__brand" aria-label="SoulMara inicio">
+        <img src="./assets/img/icon-white.png" alt="SoulMara" class="nav__brand-icon" />
+      </a>
+
+      <nav class="nav__links nav__links--right" aria-label="Secundaria">
+        <a href="#media">MEDIA</a>
+        <a href="#eventos">EVENTOS</a>
+      </nav>
+
+      <span class="nav__socials">
+        <a href="#" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
+        <a href="#" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
+        <a href="#" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
+        <a href="#" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
+        <a href="#" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
+      </span>
+    </header>
+
+    <!-- Hero -->
+    <main id="top">
+      <section class="hero">
+        <div class="hero__media">
+          <!-- Placeholder gradient/starfield stands in for the band photo -->
+          <div class="hero__bg"></div>
+          <div class="hero__grain"></div>
+        </div>
+
+        <!-- <span class="hero__side hero__side--left">SOULMARA 2026</span>
+        <span class="hero__side hero__side--right">SOULMARA 2026</span> -->
+
+        <h1 class="hero__title">
+          <!-- <span class="hero__line">SoulMara</span> -->
+          <!-- <span class="hero__line hero__line--2">CaleidoscopiA</span> -->
+        </h1>
+
+        <a href="#media" class="hero__scroll">SCROLL <span>↓</span></a>
+      </section>
+
+      <!-- Image carousel footer -->
+      <footer id="media" class="carousel" aria-label="Galería">
+        <div class="carousel__viewport">
+          <div class="carousel__track" id="carouselTrack">
+            <div class="carousel__slide is-active" style="background-image:url('./assets/carousel-img/web/slide-01.jpg')"></div>
+            <div class="carousel__slide" style="background-image:url('./assets/carousel-img/web/slide-02.jpg')"></div>
+            <div class="carousel__slide" style="background-image:url('./assets/carousel-img/web/slide-03.jpg')"></div>
+            <div class="carousel__slide" style="background-image:url('./assets/carousel-img/web/slide-04.jpg')"></div>
+            <div class="carousel__slide" style="background-image:url('./assets/carousel-img/web/slide-05.jpg')"></div>
+            <div class="carousel__slide" style="background-image:url('./assets/carousel-img/web/slide-06.jpg')"></div>
+          </div>
+
+          <button class="carousel__arrow carousel__arrow--prev" id="carouselPrev" aria-label="Anterior">‹</button>
+          <button class="carousel__arrow carousel__arrow--next" id="carouselNext" aria-label="Siguiente">›</button>
+
+          <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="Seleccionar imagen"></div>
+
+          <div class="carousel__caption">
+            <span class="carousel__brand">SOULMARA</span>
+            <span class="carousel__year">2026</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

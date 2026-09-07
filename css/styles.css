@@ -1,0 +1,464 @@
+/* ============================================================
+   SOULMARA — global styles
+   Brand palette:  cream  #EAE4D8   /   ink  #181816
+   Display font:   Milk and Honey (drop-in) → Fredoka fallback
+   ============================================================ */
+
+/* --- Brand font: Milk and Honey (subset — web formats only) --------
+   These woff2/woff files are a subset containing only the characters the
+   site renders. Generated with tools/subset-font.mjs from the licensed
+   source font, which is NOT committed to the repo. */
+@font-face {
+  font-family: "Milk and Honey";
+  src:
+    url("../assets/fonts/milk-and-honey.woff2") format("woff2"),
+    url("../assets/fonts/milk-and-honey.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Body font + Fredoka as a last-resort display fallback */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --cream: #eae4d8;
+  --ink: #181816;
+  --ink-soft: #2b2b28;
+
+  --display: "Milk and Honey", "Fredoka", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   INTRO / SPLASH
+   ============================================================ */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+/* Zoom origin = measured center of the O (moon/star) in the stacked logo */
+.intro__logo {
+  --zoom-x: 37.9%;
+  --zoom-y: 24.8%;
+  opacity: 0;
+  transform: scale(1);
+  transform-origin: var(--zoom-x) var(--zoom-y);
+  will-change: opacity, transform;
+}
+
+.intro__img {
+  display: block;
+  width: min(62vw, 640px);
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Phase 1: fade + settle in */
+.intro__logo.is-in {
+  animation: introFadeIn 1.4s var(--ease-out) forwards;
+}
+
+/* Phase 2: zoom straight into the O (moon icon) */
+.intro__logo.is-zoom {
+  animation: introZoom 1.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+@keyframes introFadeIn {
+  0%   { opacity: 0; transform: scale(0.94); filter: blur(6px); }
+  100% { opacity: 1; transform: scale(1);    filter: blur(0);   }
+}
+
+@keyframes introZoom {
+  0%   { opacity: 1; transform: scale(1); }
+  55%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(30); }
+}
+
+.intro.is-done { display: none; }
+
+/* ============================================================
+   SITE + NAV
+   ============================================================ */
+/* The site container itself becomes visible immediately after the zoom;
+   its contents are revealed in stages (see below). Starts on the dark
+   background so there is no flash. */
+.site {
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+.site.is-visible { opacity: 1; }
+
+/* --- Staged reveal ------------------------------------------------
+   Stage 1 (.reveal-hero): the hero background photo fades in.
+   Stage 2 (.reveal-layout): nav, title, scroll cue and content fade in.
+   ------------------------------------------------------------------ */
+
+/* Hero photo: hidden until stage 1 */
+.hero__bg {
+  opacity: 0;
+  transform: scale(1.08);
+  transition:
+    opacity 1.2s var(--ease-out),
+    transform 1.6s var(--ease-out);
+}
+.site.reveal-hero .hero__bg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Layout chrome: hidden until stage 2, then eases up into place */
+.nav,
+.hero__title,
+.hero__side,
+.hero__scroll,
+.carousel {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+.site.reveal-layout .nav,
+.site.reveal-layout .hero__title,
+.site.reveal-layout .hero__side,
+.site.reveal-layout .hero__scroll,
+.site.reveal-layout .carousel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gentle stagger so the pieces don't all pop at once */
+.site.reveal-layout .nav          { transition-delay: 0s; }
+.site.reveal-layout .hero__title  { transition-delay: 0.15s; }
+.site.reveal-layout .hero__side   { transition-delay: 0.3s; }
+.site.reveal-layout .hero__scroll { transition-delay: 0.45s; }
+.site.reveal-layout .carousel     { transition-delay: 0.3s; }
+
+/* Reduced motion: everything simply on, no transforms */
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg,
+  .nav, .hero__title, .hero__side, .hero__scroll, .carousel {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 40;
+  /* Agrupamos los enlaces + icono en el centro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem; /* separación entre menús y el logo central */
+  padding: 1.4rem 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.nav a {
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.nav a:hover { opacity: 1; }
+
+.nav__brand {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+.nav__brand-icon { width: 34px; height: auto; display: block; }
+
+/* Redes sociales ancladas a la esquina derecha, sin afectar el centrado */
+.nav__socials {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.nav__socials a {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.nav__socials a:hover { opacity: 1; transform: translateY(-1px); }
+/* Los SVG ya vienen en color crema (fill definido en el propio archivo) */
+.nav__socials img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 620px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.hero__media { position: absolute; inset: 0; z-index: 0; }
+
+/* Band photo, converted to black & white to match the brand */
+.hero__bg {
+  position: absolute; inset: 0;
+  background-image: url("../assets/img/hero.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  /* B&W + a touch of contrast so it reads clean against the type */
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+}
+/* Vignette / darkening so the cream headline stays legible */
+.hero__grain {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(24,24,22,0.35) 0%, rgba(24,24,22,0.05) 30%, rgba(24,24,22,0.55) 100%),
+    radial-gradient(80% 60% at 50% 45%, transparent 35%, rgba(24,24,22,0.6) 100%);
+}
+
+.hero__title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--display);
+  font-weight: 700;
+  text-align: center;
+  color: var(--cream);
+  line-height: 0.86;
+  letter-spacing: 0.01em;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.55);
+}
+.hero__line {
+  display: block;
+  font-size: clamp(3.5rem, 15vw, 13rem);
+}
+
+.hero__side {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+  writing-mode: vertical-rl;
+}
+.hero__side--left  { left: 1.4rem;  transform: translateY(-50%) rotate(180deg); }
+.hero__side--right { right: 1.4rem; transform: translateY(-50%); }
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem; right: 2.4rem;
+  z-index: 3;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.85;
+}
+.hero__scroll span { animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(5px);} }
+
+/* ============================================================
+   CAROUSEL (footer gallery)
+   ============================================================ */
+/* Full-width band: cream background contrasts the dark hero above */
+.carousel {
+  position: relative;
+  z-index: 5;
+  background: var(--cream);
+  border-radius: 32px 32px 0 0;
+  margin-top: -32px;
+  padding: 4.5rem clamp(1.2rem, 5vw, 4rem) 5.5rem;
+}
+
+/* The rounded card that actually contains the images */
+.carousel__viewport {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: min(70vh, 660px);
+  min-height: 360px;
+  border-radius: 24px;
+  overflow: hidden; /* clips the shifting photos to the card */
+  /* Cream border + inks frame so the card reads as a distinct object */
+  border: 6px solid var(--cream);
+  box-shadow:
+    0 0 0 1px rgba(24, 24, 22, 0.12),
+    0 30px 70px rgba(24, 24, 22, 0.25);
+}
+
+.carousel__track {
+  position: absolute;
+  inset: 0;
+}
+
+/* Slides stack and cross-fade */
+.carousel__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  /* B&W to match the site's monochrome look */
+  filter: grayscale(1) contrast(1.05) brightness(0.95);
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1s var(--ease-out), transform 6s linear;
+  will-change: opacity, transform;
+}
+.carousel__slide.is-active {
+  opacity: 1;
+  transform: scale(1); /* slow Ken-Burns drift while visible */
+}
+
+/* Darkening so caption + controls stay legible */
+.carousel__viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 24, 22, 0.35) 0%,
+    rgba(24, 24, 22, 0) 35%,
+    rgba(24, 24, 22, 0.55) 100%
+  );
+}
+
+/* Arrows */
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(234, 228, 216, 0.5);
+  border-radius: 50%;
+  background: rgba(24, 24, 22, 0.25);
+  color: var(--cream);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.carousel__arrow:hover {
+  background: rgba(24, 24, 22, 0.55);
+  border-color: var(--cream);
+}
+.carousel__arrow--prev { left: 1.4rem; }
+.carousel__arrow--next { right: 1.4rem; }
+.carousel__arrow--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.carousel__arrow--next:hover { transform: translateY(-50%) translateX(2px); }
+
+/* Dots */
+.carousel__dots {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 0.6rem;
+}
+.carousel__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(234, 228, 216, 0.4);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.carousel__dot:hover { background: rgba(234, 228, 216, 0.7); }
+.carousel__dot.is-active {
+  background: var(--cream);
+  transform: scale(1.25);
+}
+
+/* Caption */
+.carousel__caption {
+  position: absolute;
+  top: 1.4rem;
+  left: 1.6rem;
+  z-index: 3;
+  font-family: var(--display);
+  color: var(--cream);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  letter-spacing: 0.08em;
+}
+.carousel__brand { font-size: 1.4rem; }
+.carousel__year { font-size: 0.8rem; opacity: 0.8; }
+
+@media (max-width: 640px) {
+  .carousel__arrow { width: 40px; height: 40px; font-size: 1.3rem; }
+  .carousel__arrow--prev { left: 0.8rem; }
+  .carousel__arrow--next { right: 0.8rem; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .nav { padding: 1rem; font-size: 0.7rem; }
+  .nav__links { gap: 0.9rem; }
+  .nav__socials { display: none; }
+  .hero__side { display: none; }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .intro__logo.is-in,
+  .intro__logo.is-zoom,
+  .icon-star,
+  .hero__scroll span { animation: none !important; }
+  .intro__logo { opacity: 1; }
+}
