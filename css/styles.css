@@ -567,6 +567,38 @@ body {
   flex-direction: column;
 }
 
+/* Reveal animation: records start hidden (.reveal is added by JS), then
+   fade + rise into place one by one when .is-in is applied. If JS is off,
+   records keep their default fully-visible state. */
+.record.reveal,
+.press__cover.reveal,
+.press__section.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.record.reveal.is-in,
+.press__cover.reveal.is-in,
+.press__section.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 2s var(--ease-out),
+    transform 2s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record.reveal,
+  .record.reveal.is-in,
+  .press__cover.reveal,
+  .press__cover.reveal.is-in,
+  .press__section.reveal,
+  .press__section.reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* The square cover itself. position:relative anchors the name overlay. */
 .record__cover {
   position: relative;
@@ -663,4 +695,423 @@ body {
   .record__links { gap: 0.4rem; }
   .record__links a { width: 26px; height: 26px; }
   .record__links img { width: 14px; height: 14px; }
+}
+
+/* ============================================================
+   PRESS KIT — press kit page
+   Reuses the fixed blurred background (.musica-bg) + shared nav.
+   ============================================================ */
+.press {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 7rem clamp(1.2rem, 5vw, 3rem) 4rem;
+}
+
+/* --- Cover / hero band ------------------------------------- */
+.press__cover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(70vh, 620px);
+  margin-bottom: 4rem;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(24,24,22,0.55), rgba(24,24,22,0.75)),
+    url("../assets/img/hero.jpg") center/cover no-repeat;
+  filter: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+}
+/* B&W treatment on the cover photo, applied via a layer so the wordmark
+   on top stays full-strength cream. */
+.press__cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: grayscale(1) contrast(1.05);
+  z-index: 0;
+}
+.press__wordmark {
+  position: relative;
+  z-index: 1;
+  width: min(70%, 460px);
+  height: auto;
+  margin-bottom: 3rem;
+}
+.press__badge {
+  position: absolute;
+  left: 0;
+  bottom: 1.6rem;
+  z-index: 1;
+  background: rgba(120, 104, 54, 0.92); /* muted gold, like the kit */
+  color: var(--cream);
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.6rem 0.7rem 1.2rem;
+}
+
+/* --- Generic section + titles ----------------------------- */
+.press__section {
+  margin: 0 auto 4.5rem;
+}
+
+/* Bio section: stack + center everything (title, lead, tagline) */
+.press__bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.press__title {
+  width: 100%;
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  text-align: center;
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.6rem;
+}
+.press__title--band {
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  margin-bottom: 1.4rem;
+}
+
+.press__lead {
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--cream);
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.press__lead strong { font-weight: 600; }
+
+.press__tagline {
+  margin-top: 1.8rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: var(--cream);
+  opacity: 0.9;
+}
+
+.press__body {
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--cream);
+  max-width: 44rem;
+  margin: 0 auto 1.2rem;
+  text-align: center;
+}
+
+.press__title_margin {
+  margin-top: 10rem;
+}
+
+/* --- Members ----------------------------------------------- */
+.members {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.6rem, 2vw, 1.4rem);
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.member__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(234, 228, 216, 0.18);
+  filter: grayscale(1);
+  margin-bottom: 0.7rem;
+  /* Grayscale portrait, zoomed in and centered so the member fills the
+     frame. 150% scales the image up ~50% past cover; overflow crops it
+     evenly. No layered pseudo-element, so no hairline edge artifacts. */
+  background-color: var(--ink);
+  background-size: 150%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Hover lift */
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  will-change: transform;
+}
+.member__photo:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member__photo,
+  .member__photo:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Per-member framing tweaks (base is 150% / center center).
+   Moving the image "down" = show more top = smaller Y%.
+   Moving the image "up"   = show more bottom = larger Y%.
+   Moving the image "left" = show more right = larger X%. */
+.member__photo--daniel { /* looks good as-is */ }
+.member__photo--angel  { background-size: 155%; background-position: 65% center; }
+.member__photo--almara { background-position: center 15%; }
+.member__photo--pali   { background-size: 160%; background-position: center 70%; }
+.member__photo--omar   { background-size: 180%; background-position: 40% center; }
+.member__role {
+  font-family: var(--display);
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  color: var(--cream);
+  opacity: 0.85;
+}
+.member__name {
+  font-family: var(--display);
+  font-size: clamp(1rem, 2.4vw, 1.4rem);
+  color: var(--cream);
+}
+.member__nickname {
+  font-family: var(--display);
+  font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+  color: var(--cream);
+}
+
+/* --- Festivales / Shows ------------------------------------ */
+.shows__list {
+  list-style: none;
+  max-width: 40rem;
+  margin: 0 auto 1.6rem;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.shows__list li {
+  position: relative;
+  padding-left: 1.8rem;
+  color: var(--cream);
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  line-height: 1.5;
+}
+/* Star bullet echoing the brand mark */
+.shows__list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+.shows__gallery {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.shows__thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background: rgba(234, 228, 216, 0.08);
+  border: 1px solid rgba(234, 228, 216, 0.15);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1);
+}
+
+/* --- Social media photo + stats ---------------------------- */
+.press__photo {
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  background: rgba(234, 228, 216, 0.08);
+  border: 1px solid rgba(234, 228, 216, 0.15);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1);
+  margin-bottom: 1.6rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.stat {
+  background: rgba(24, 24, 22, 0.72);
+  border: 1px solid rgba(234, 228, 216, 0.12);
+  border-radius: 16px;
+  padding: 1.1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  /* Clickable card → social profile */
+  color: var(--cream);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.stat:hover {
+  background: rgba(24, 24, 22, 0.95);
+  border-color: var(--cream);
+  transform: translateY(-3px);
+}
+.stat__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--cream);
+  opacity: 0.85;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.stat__label img { width: 14px; height: 14px; }
+.stat__value {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1;
+  color: var(--cream);
+}
+.stat__sub { font-size: 0.8rem; color: var(--cream); opacity: 0.75; }
+
+/* --- Audiencia --------------------------------------------- */
+.audience {
+  background: rgba(24, 24, 22, 0.72);
+  border: 1px solid rgba(234, 228, 216, 0.12);
+  border-radius: 20px;
+  padding: 1.8rem clamp(1.2rem, 4vw, 2.4rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  text-align: center;
+}
+.audience__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.audience__label { font-size: 0.9rem; color: var(--cream); opacity: 0.8; }
+.audience__value {
+  font-family: var(--display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1;
+  color: var(--cream);
+}
+.audience__sub { font-size: 0.85rem; color: var(--cream); opacity: 0.8; }
+
+/* --- Lanzamientos ------------------------------------------ */
+/* Lanzamientos reuses the música .gallery / .record cards, but its caption
+   shows Spotify + YouTube stream counts instead of the full icon-link row. */
+.record__caption--stats {
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.record__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, transform 0.2s;
+  opacity: 0.9;
+}
+.record__stat img { width: 16px; height: 16px; }
+.record__stat:hover { opacity: 1; transform: translateY(-2px); }
+
+/* --- Contacto ---------------------------------------------- */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 4vw, 2.4rem);
+  margin: 0 auto;
+}
+.contact__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 120px;
+  padding: 1.6rem 2rem;
+  border-radius: 18px;
+  background: rgba(24, 24, 22, 0.78);
+  border: 1px solid rgba(234, 228, 216, 0.14);
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  word-break: break-word;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.contact__card:hover {
+  background: rgba(24, 24, 22, 0.95);
+  border-color: var(--cream);
+  transform: translateY(-2px);
+}
+
+/* --- Footer ------------------------------------------------ */
+.press__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(234, 228, 216, 0.15);
+}
+.press__handle {
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+.press__handle:hover { opacity: 1; }
+.press__footer-icon { width: 26px; height: auto; opacity: 0.9; }
+
+/* Standalone page footer (used on pages that don't wrap content in .press).
+   Adds the outer padding + centered max-width the .press container would
+   otherwise provide, and sits above the fixed backgrounds. */
+.press__footer--site {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem clamp(1.2rem, 5vw, 3rem);
+}
+
+/* ============================================================
+   PRESS KIT — responsive
+   ============================================================ */
+@media (max-width: 780px) {
+  .members { grid-template-columns: repeat(3, 1fr); }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .press { padding: 5.5rem 1rem 3rem; }
+  .press__cover { min-height: 60vh; margin-bottom: 3rem; }
+  .members { grid-template-columns: repeat(2, 1fr); }
+  /* If the last member ends up alone on its row (odd count in a 2-col
+     grid), span both columns and center it — sized to exactly one
+     column's width so it stays the same size as the others. */
+  .member:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc((100% - clamp(0.6rem, 2vw, 1.4rem)) / 2);
+    margin-inline: auto;
+  }
+  .shows__gallery { grid-template-columns: repeat(2, 1fr); }
+  .audience { grid-template-columns: 1fr; gap: 1.2rem; }
+  .contact { grid-template-columns: 1fr; }
+  .press__section { margin-bottom: 3.2rem; }
 }
