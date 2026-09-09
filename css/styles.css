@@ -231,7 +231,8 @@ body {
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 620px;
+  height: 100dvh; /* dvh avoids the mobile address-bar height jump */
+  min-height: 560px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -438,20 +439,68 @@ body {
 .carousel__brand { font-size: 1.4rem; }
 .carousel__year { font-size: 0.8rem; opacity: 0.8; }
 
-@media (max-width: 640px) {
-  .carousel__arrow { width: 40px; height: 40px; font-size: 1.3rem; }
-  .carousel__arrow--prev { left: 0.8rem; }
-  .carousel__arrow--next { right: 0.8rem; }
+/* ============================================================
+   RESPONSIVE — tablet
+   ============================================================ */
+@media (max-width: 900px) {
+  .nav { gap: 1.4rem; }
+  .nav__socials { right: 1.2rem; gap: 0.7rem; }
+  .carousel { padding: 3rem clamp(1rem, 4vw, 2.5rem) 4rem; }
+  .carousel__viewport { height: min(60vh, 560px); }
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — mobile
    ============================================================ */
 @media (max-width: 640px) {
-  .nav { padding: 1rem; font-size: 0.7rem; }
+  /* Nav: tighter, socials hidden (they'd crowd the small bar) */
+  .nav {
+    padding: 0.9rem 1rem;
+    font-size: 0.72rem;
+    gap: 1.2rem;
+    letter-spacing: 0.1em;
+  }
   .nav__links { gap: 0.9rem; }
+  .nav__brand { width: 34px; height: 34px; }
+  .nav__brand-icon { width: 28px; }
   .nav__socials { display: none; }
+
+  /* Hero: side labels off, headline breathes, scroll cue centered */
   .hero__side { display: none; }
+  .hero__line { font-size: clamp(3rem, 18vw, 6rem); }
+  .hero__scroll {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 1.4rem;
+    font-size: 0.7rem;
+  }
+
+  /* Carousel: full-width-ish card, smaller controls */
+  .carousel {
+    padding: 2.5rem 0.9rem 3.5rem;
+    border-radius: 24px 24px 0 0;
+  }
+  .carousel__viewport {
+    height: min(56vh, 460px);
+    min-height: 300px;
+    border-radius: 18px;
+    border-width: 4px;
+  }
+  .carousel__arrow { width: 38px; height: 38px; font-size: 1.2rem; }
+  .carousel__arrow--prev { left: 0.6rem; }
+  .carousel__arrow--next { right: 0.6rem; }
+  .carousel__caption { top: 1rem; left: 1rem; }
+  .carousel__brand { font-size: 1.1rem; }
+  .carousel__dots { bottom: 1rem; }
+
+  /* Intro logo: a touch larger relative to small screens */
+  .intro__img { width: 78vw; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .nav { gap: 0.8rem; font-size: 0.66rem; }
+  .nav__links { gap: 0.6rem; }
 }
 
 /* Respect reduced-motion */
@@ -461,4 +510,141 @@ body {
   .icon-star,
   .hero__scroll span { animation: none !important; }
   .intro__logo { opacity: 1; }
+}
+
+/* ============================================================
+   MÚSICA — discography gallery page
+   ============================================================ */
+.musica {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 7.5rem clamp(1.2rem, 5vw, 4rem) 5rem;
+}
+
+.musica__head {
+  max-width: 1200px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.musica__title {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+/* Responsive grid of square covers */
+.gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+
+/* Each record is a vertical stack: square cover on top, caption below */
+.record {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The square cover itself. position:relative anchors the name overlay. */
+.record__cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 0 0 1px rgba(234, 228, 216, 0.08),
+    0 24px 50px rgba(0, 0, 0, 0.45);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+.record__cover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(234, 228, 216, 0.14),
+    0 32px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* Name overlays the bottom of the cover artwork, on a soft scrim so it
+   stays legible against any image. */
+.record__name {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: 1.6rem 1.1rem 0.9rem;
+  font-family: var(--display);
+  color: var(--cream);
+  font-size: 1.4rem;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(24, 24, 22, 0) 0%,
+    rgba(24, 24, 22, 0.75) 100%
+  );
+}
+
+/* Caption rests on the frame BELOW the cover, holding only the icons,
+   aligned to the right. */
+.record__caption {
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Icons centered as a group beneath the cover */
+.record__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  width: 100%;
+}
+
+/* Circular icon buttons matching the reference */
+.record__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(234, 228, 216, 0.14);
+  border: 1px solid rgba(234, 228, 216, 0.3);
+  backdrop-filter: blur(3px);
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.record__links a:hover {
+  background: rgba(234, 228, 216, 0.28);
+  border-color: var(--cream);
+  transform: translateY(-2px);
+}
+.record__links img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* ============================================================
+   MÚSICA — responsive
+   ============================================================ */
+@media (max-width: 640px) {
+  .musica { padding: 5.5rem 0.9rem 3.5rem; }
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.9rem;
+  }
+  .record__cover { border-radius: 14px; }
+  .record__caption { padding-top: 0.6rem; }
+  .record__name { font-size: 1.05rem; padding: 1.3rem 0.8rem 0.7rem; }
+  .record__links { gap: 0.4rem; }
+  .record__links a { width: 26px; height: 26px; }
+  .record__links img { width: 14px; height: 14px; }
 }

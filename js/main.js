@@ -31,6 +31,35 @@
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
+  // Skip the intro when the visitor arrived by clicking the home logo
+  // (e.g. from the música page). The flag is carried in sessionStorage,
+  // set on the logo's click handler, so it survives navigation regardless
+  // of how the server handles URLs / query strings. The URL param is kept
+  // as a fallback. A genuine load / refresh / first visit has no flag and
+  // still plays the intro.
+  let skipIntro = false;
+  try {
+    if (sessionStorage.getItem("skipIntro") === "1") {
+      skipIntro = true;
+      sessionStorage.removeItem("skipIntro"); // one-shot: only this navigation
+    }
+  } catch (_) {
+    /* sessionStorage unavailable (private mode, etc.) — fall through */
+  }
+  if (!skipIntro) {
+    skipIntro = new URLSearchParams(window.location.search).has("skipIntro");
+  }
+
+  // If the page is restored from the back/forward cache, it was already
+  // revealed on the first run — never replay the intro on restore.
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) {
+      site.classList.add("is-visible", "reveal-hero", "reveal-layout");
+      intro.classList.add("is-done");
+      document.body.style.overflow = "";
+    }
+  });
+
   // Timings (ms)
   const HOLD_AFTER_FADE = 900; // pause on the logo before zooming
   const FADE_DURATION = 1400; // matches CSS introFadeIn
@@ -86,8 +115,13 @@
     }, zoomStart);
   }
 
-  // Reduced motion: skip straight to a fully-visible site
-  if (prefersReduced) {
+  // Skip straight to a fully-visible site when either the visitor prefers
+  // reduced motion, or arrived via the home logo (?skipIntro=1).
+  if (prefersReduced || skipIntro) {
+    // Tidy the flag out of the URL so a later refresh plays the intro again.
+    if (skipIntro && window.history.replaceState) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
     revealSite();
     revealHero();
     revealLayout();
