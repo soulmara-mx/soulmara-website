@@ -249,6 +249,22 @@ body {
   /* B&W + a touch of contrast so it reads clean against the type */
   filter: grayscale(1) contrast(1.08) brightness(0.92);
 }
+
+/* On portrait phones the wide landscape hero has to crop in hard and
+   loses the band. Swap to a purpose-composed vertical image instead.
+   Scoped to portrait orientation + phone width so it never affects
+   landscape phones or wider tablets. */
+@media (orientation: portrait) and (max-width: 820px) {
+  .hero__bg {
+    background-image: url("../assets/img/heroPortrait.jpg");
+    /* Fill the whole viewport (both width and height), anchored to the
+       top so the top of the image stays fixed and any overflow is
+       cropped from the bottom. */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
 /* Vignette / darkening so the cream headline stays legible */
 .hero__grain {
   position: absolute; inset: 0;
