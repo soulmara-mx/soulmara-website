@@ -258,7 +258,7 @@ body {
   .hero__bg {
     background-image: url("../assets/img/herotest.jpg");
     background-size: cover;
-    background-position: 45% bottom;
+    background-position: 25% bottom;
     background-repeat: no-repeat;
     background-color: var(--ink);
   }
