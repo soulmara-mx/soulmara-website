@@ -1062,34 +1062,96 @@ body {
   transform: translateY(-2px);
 }
 
-/* --- Footer ------------------------------------------------ */
-.press__footer {
+/* --- Footer ------------------------------------------------
+   Full-viewport-width bar with a centered inner row. Groups (brand,
+   contact, socials) space out on desktop and stack/wrap on portrait. */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(234, 228, 216, 0.15);
+  background: rgba(24, 24, 22, 0.55);
+}
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem clamp(1.2rem, 5vw, 3rem);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2rem;
-  margin-top: 1rem;
-  border-top: 1px solid rgba(234, 228, 216, 0.15);
+  gap: 1rem 1.6rem;
 }
+
+/* A footer group (brand / contact / socials) */
+.site-footer__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.2rem;
+}
+.site-footer__group--socials { gap: 0.9rem; }
+
+.site-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--cream);
+  font-family: var(--display);
+  letter-spacing: 0.06em;
+  font-size: 1rem;
+}
+
 .press__handle {
   color: var(--cream);
   text-decoration: none;
   opacity: 0.85;
-  letter-spacing: 0.08em;
-  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  word-break: break-word;
 }
 .press__handle:hover { opacity: 1; }
+
 .press__footer-icon { width: 26px; height: auto; opacity: 0.9; }
 
-/* Standalone page footer (used on pages that don't wrap content in .press).
-   Adds the outer padding + centered max-width the .press container would
-   otherwise provide, and sits above the fixed backgrounds. */
-.press__footer--site {
-  position: relative;
-  z-index: 1;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem clamp(1.2rem, 5vw, 3rem);
+/* Social icon links in the footer */
+.site-footer__socials a {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.site-footer__socials a:hover { opacity: 1; transform: translateY(-2px); }
+.site-footer__socials img { width: 100%; height: 100%; display: block; }
+
+/* Portrait / mobile: stack the groups, left-aligned, comfortable spacing. */
+@media (max-width: 640px) {
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+    text-align: left;
+  }
+  .site-footer__group { gap: 0.5rem 1rem; }
+
+  /* Contact handles: each on its own full-width row, clearly separated
+     rather than a cramped stacked list. */
+  .site-footer__group--contact {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+  .site-footer__group--contact .press__handle {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    border-top: 1px solid rgba(234, 228, 216, 0.12);
+  }
+  .site-footer__group--contact .press__handle:first-child {
+    border-top: none;
+  }
 }
 
 /* ============================================================
@@ -1409,4 +1471,24 @@ body {
   .strip__item img,
   .lightbox__close,
   .lightbox__nav { transition: none; }
+}
+
+/* ============================================================
+   MEDIA — full-bleed wall of 5 scrolling strips
+   ============================================================ */
+.media {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 7.5rem 0 5rem; /* no side padding: strips run full-bleed */
+}
+/* The title keeps the normal content inset even though the strips don't. */
+.media .musica__head {
+  padding: 0 clamp(1.2rem, 5vw, 4rem);
+}
+/* The base .strips rule already breaks out to 100vw; just tune the height
+   for the media wall (a touch shorter so 5 rows fit comfortably). */
+.media__strips {
+  --strip-h: clamp(140px, 20vh, 220px);
 }
