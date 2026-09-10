@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MEDIA — SOULMARA</title>
-  <meta name="description" content="SOULMARA — media." />
+  <title>Evento — SOULMARA</title>
+  <meta name="description" content="SOULMARA — galería del evento." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./css/styles.css" />
@@ -30,8 +30,8 @@
       </a>
 
       <nav class="nav__links nav__links--right" aria-label="Secundaria">
-        <a href="./media.html" aria-current="page">MEDIA</a>
-        <a href="./eventos.html">EVENTOS</a>
+        <a href="./media.html">MEDIA</a>
+        <a href="./eventos.html" aria-current="page">EVENTOS</a>
       </nav>
 
       <span class="nav__socials">
@@ -43,11 +43,23 @@
       </span>
     </header>
 
-    <!-- ============ MEDIA (provisional) ============ -->
-    <main class="musica" id="top">
-      <header class="musica__head">
-        <h1 class="musica__title">MEDIA</h1>
+    <!-- ============ EVENT GALLERY ============ -->
+    <main class="evento" id="top">
+      <a href="./eventos.html" class="evento__back">← Eventos</a>
+
+      <header class="evento__head">
+        <h1 class="evento__title" id="eventoTitle">Evento</h1>
+        <p class="evento__meta" id="eventoMeta"></p>
       </header>
+
+      <!-- Scrolling photo strips (filled by JS from the event data) -->
+      <section class="strips" id="galleryStrips" aria-label="Galería del evento"></section>
+
+      <!-- Empty / not-found message (shown by JS when needed) -->
+      <p class="evento__empty" id="eventoEmpty" hidden>
+        No encontramos la galería de este evento.
+        <a href="./eventos.html">Volver a Eventos</a>.
+      </p>
     </main>
 
     <!-- ============ FOOTER ============ -->
@@ -56,5 +68,16 @@
       <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
     </footer>
   </div>
+
+  <!-- Lightbox for enlarging a photo -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Siguiente">›</button>
+  </div>
+
+  <script src="./js/eventos-data.js"></script>
+  <script src="./js/evento.js"></script>
 </body>
 </html>

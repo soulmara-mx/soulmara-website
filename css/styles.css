@@ -258,7 +258,7 @@ body {
   .hero__bg {
     background-image: url("../assets/img/herotest.jpg");
     background-size: cover;
-    background-position: 25% bottom;
+    background-position: 25% top;
     background-repeat: no-repeat;
     background-color: var(--ink);
   }
@@ -1116,4 +1116,297 @@ body {
   .audience { grid-template-columns: 1fr; gap: 1.2rem; }
   .contact { grid-template-columns: 1fr; }
   .press__section { margin-bottom: 3.2rem; }
+}
+
+/* ============================================================
+   EVENTOS — event cards grid
+   Rectangular photo cards (like a listings row), ~4 per row.
+   ============================================================ */
+.events__heading {
+  max-width: 1200px;
+  margin: 0 auto 1.4rem;
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.04em;
+}
+/* Space between the two event sections */
+.events__heading + .events { margin-bottom: 3.5rem; }
+
+.events {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.8rem);
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease-out);
+  /* Cards are <a> links: strip the default anchor styling. */
+  color: var(--cream);
+  text-decoration: none;
+}
+.event:hover { transform: translateY(-4px); }
+
+/* Landscape photo (placeholder tint until an image is set inline) */
+.event__photo {
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: rgba(234, 228, 216, 0.1);
+  border: 1px solid rgba(234, 228, 216, 0.18);
+  background-size: cover;
+  /* Posters are portrait; fill the landscape card anchored to the top so
+     the top of the poster stays visible (crop happens at the bottom). */
+  background-position: center top;
+  filter: grayscale(1);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.9rem;
+}
+
+.event__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.event__name {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  line-height: 1.1;
+}
+.event__date {
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.event__venue {
+  color: var(--cream);
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   EVENTOS — responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .events { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .events { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .event__photo { border-radius: 10px; }
+}
+@media (max-width: 380px) {
+  .events { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   EVENTOS — card link + hover preview affordance
+   ============================================================ */
+.event--link {
+  cursor: pointer;
+}
+/* While previewing the carousel, show the photos in full color and lift
+   the card slightly. */
+.event--link.is-previewing .event__photo {
+  filter: none;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55);
+}
+.event--link:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 4px;
+  border-radius: 16px;
+}
+
+/* ============================================================
+   EVENTO — single event gallery page
+   ============================================================ */
+.evento {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6.5rem clamp(1.2rem, 5vw, 3rem) 4rem;
+}
+
+.evento__back {
+  display: inline-block;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.8;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  margin-bottom: 1.4rem;
+  transition: opacity 0.2s;
+}
+.evento__back:hover { opacity: 1; }
+
+.evento__head {
+  margin-bottom: 2.4rem;
+}
+.evento__title {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: 0.02em;
+}
+.evento__meta {
+  margin-top: 0.6rem;
+  color: var(--cream);
+  opacity: 0.8;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  letter-spacing: 0.02em;
+}
+
+.evento__empty {
+  color: var(--cream);
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+.evento__empty a { color: var(--cream); }
+
+/* Scrolling photo strips: 3 rows marqueeing left → right. Hovering (or
+   tapping, via .is-slow) slows them down. */
+.strips {
+  --strip-h: clamp(150px, 22vh, 240px); /* uniform strip/photo height */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1.6vw, 1rem);
+  overflow: hidden;
+  /* Break out of the centered .evento container to span the full viewport. */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.strip {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* The moving track holds two copies of the photo set. Its transform is driven
+   by a requestAnimationFrame loop in evento.js so the speed can change
+   smoothly on hover without the position jumping. */
+.strip__track {
+  display: flex;
+  gap: clamp(0.6rem, 1.6vw, 1rem);
+  width: max-content;
+  will-change: transform;
+}
+
+/* Each photo: fixed height, natural width (landscape stays wide, portrait
+   becomes narrower at the same height). */
+.strip__item {
+  flex: 0 0 auto;
+  height: var(--strip-h);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+.strip__item img {
+  height: 100%;
+  width: auto;
+  display: block;
+  filter: grayscale(1);
+  transition: filter 0.3s var(--ease-out);
+}
+.strip__item:hover img { filter: grayscale(0); }
+.strip__item:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+
+/* Direction and speed (incl. the smooth hover slow-down) are handled in JS.
+   Under reduced-motion the JS loop doesn't run; let the strips scroll manually. */
+@media (prefers-reduced-motion: reduce) {
+  .strips { overflow-x: auto; }
+  .strip { overflow-x: visible; }
+}
+
+/* ============================================================
+   LIGHTBOX — full-size photo overlay
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(15, 15, 14, 0.92);
+  backdrop-filter: blur(4px);
+}
+.lightbox[hidden] { display: none; }
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(234, 228, 216, 0.4);
+  background: rgba(24, 24, 22, 0.4);
+  color: var(--cream);
+  cursor: pointer;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: rgba(24, 24, 22, 0.75);
+  border-color: var(--cream);
+}
+.lightbox__close {
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  font-size: 2rem;
+  line-height: 1;
+}
+.lightbox__nav--prev { left: 1.2rem; }
+.lightbox__nav--next { right: 1.2rem; }
+.lightbox__nav--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.lightbox__nav--next:hover { transform: translateY(-50%) translateX(2px); }
+
+@media (max-width: 640px) {
+  .lightbox__nav { width: 42px; height: 42px; font-size: 1.6rem; }
+  .lightbox__nav--prev { left: 0.6rem; }
+  .lightbox__nav--next { right: 0.6rem; }
+  .lightbox__close { top: 0.8rem; right: 0.8rem; width: 40px; height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip__item img,
+  .lightbox__close,
+  .lightbox__nav { transition: none; }
 }

@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="icon" type="image/png" href="./assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
 </head>
 <body>
   <!-- ============ MAIN SITE ============ -->
@@ -41,11 +43,130 @@
       </span>
     </header>
 
-    <!-- ============ EVENTOS (provisional) ============ -->
+    <!-- ============ EVENTOS ============ -->
     <main class="musica" id="top">
-      <header class="musica__head">
-        <h1 class="musica__title">EVENTOS</h1>
-      </header>
+
+      <!-- ===== PRÓXIMOS EVENTOS ===== -->
+      <h2 class="events__heading">PRÓXIMOS EVENTOS</h2>
+      <section class="events" aria-label="Próximos eventos">
+
+        <!-- Upcoming 1 -->
+        <article class="event">
+          <div class="event__photo" style="background-image:url('./assets/img/hero.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">Todos Somos Mexicali</h2>
+            <p class="event__date">26 Septiembre 2026</p>
+            <p class="event__venue">Tu Parque</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </article>
+
+        <!-- Upcoming 2 -->
+        <article class="event">
+          <div class="event__photo" style="background-image:url('./assets/img/hero.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">Ruido by Scaleta</h2>
+            <p class="event__date">25 Septiembre 2026</p>
+            <p class="event__venue">Malgro Cervecería Tap Room</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ===== EVENTOS PASADOS ===== -->
+      <h2 class="events__heading">EVENTOS PASADOS</h2>
+      <section class="events" aria-label="Eventos pasados">
+
+        <!-- Card 1 -->
+        <a class="event" data-event="tijuana-rock-bar" href="./evento.html#tijuana-rock-bar">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-8.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">5 Septiembre 2026</p>
+            <p class="event__venue">Tijuana Rock bar</p>
+            <p class="event__venue">Tijuana, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a class="event" data-event="malgro-tap-room" href="./evento.html#malgro-tap-room">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-7.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">22 Agosto 2026</p>
+            <p class="event__venue">Malgro Cervecería Tap Room</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="event" data-event="cafe-la-bohemia-tecate" href="./evento.html#cafe-la-bohemia-tecate">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-6.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">15 Agosto 2026</p>
+            <p class="event__venue">Café La Bohemia</p>
+            <p class="event__venue">Tecate, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a class="event" data-event="cafe-literario" href="./evento.html#cafe-literario">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-5.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">7 Agosto 2026</p>
+            <p class="event__venue">Café Literario</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a class="event" data-event="amante-brew" href="./evento.html#amante-brew">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-4.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">1 Agosto 2026</p>
+            <p class="event__venue">Amante Brew</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a class="event" data-event="casa-verde-ensenada" href="./evento.html#casa-verde-ensenada">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-3.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">25 Julio 2026</p>
+            <p class="event__venue">Casa Verde Brew</p>
+            <p class="event__venue">Ensenada, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 7 -->
+        <a class="event" data-event="release-party-ceart" href="./evento.html#release-party-ceart">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-2.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Release Party</h2>
+            <p class="event__date">10 Julio 2026</p>
+            <p class="event__venue">Foro Experimental CEART</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </a>
+
+        <!-- Card 8 -->
+        <a class="event" data-event="barrio-chino" href="./evento.html#barrio-chino">
+          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-1.jpg')" aria-hidden="true"></div>
+          <div class="event__body">
+            <h2 class="event__name">CaleidoscopiA Tour</h2>
+            <p class="event__date">8 Julio 2026</p>
+            <p class="event__venue">Barrio Chino</p>
+            <p class="event__venue">Mexicali, B.C.</p>
+          </div>
+        </a>
+
+      </section>
     </main>
 
     <!-- ============ FOOTER ============ -->
@@ -54,5 +175,8 @@
       <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
     </footer>
   </div>
+
+  <script src="./js/eventos-data.js"></script>
+  <script src="./js/eventos.js"></script>
 </body>
 </html>
