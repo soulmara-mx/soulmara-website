@@ -52,10 +52,12 @@
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Dwell buffer (px of scroll) held at each end before the strip starts /
-  // after it finishes moving — so reaching the end doesn't immediately drop
-  // you into the next section, and there's leeway at the start too.
-  const BUFFER = Math.round(window.innerHeight * 0.5);
+  // Dwell buffers (px of scroll) held before the strip starts moving and
+  // after it finishes. A modest start buffer gives leeway; a small end buffer
+  // means once you reach the last cover, the next section (press kit) comes
+  // into view quickly instead of after a big empty gap.
+  const START_BUFFER = Math.round(window.innerHeight * 0.35);
+  const END_BUFFER = Math.round(window.innerHeight * 0.12);
 
   // How far the strip must travel horizontally (its overflow past the strip
   // container width). Measured after images load / on resize.
@@ -63,9 +65,9 @@
   function measure() {
     // The strip container is viewport-width; the track may be wider.
     maxScroll = Math.max(0, track.scrollWidth - stripEl.clientWidth);
-    // The wrapper's extra height = horizontal travel PLUS a buffer at each end
+    // The wrapper's extra height = horizontal travel PLUS the two buffers
     // (only added when there's actually something to scroll horizontally).
-    const extra = maxScroll > 0 ? maxScroll + BUFFER * 2 : 0;
+    const extra = maxScroll > 0 ? maxScroll + START_BUFFER + END_BUFFER : 0;
     pinEl.style.setProperty("--pin-extra", extra + "px");
     onScroll();
   }
@@ -81,9 +83,9 @@
     // Raw scrolled distance into the pinned section, in px.
     const scrolled = Math.max(0, Math.min(total, -rect.top));
     // Map only the MIDDLE of the scroll to horizontal travel: the first
-    // BUFFER px holds at the start, the last BUFFER px holds at the end.
-    const active = scrolled - BUFFER;
-    const activeSpan = total - BUFFER * 2; // == maxScroll
+    // START_BUFFER px holds at the start, the last END_BUFFER px holds at end.
+    const active = scrolled - START_BUFFER;
+    const activeSpan = total - START_BUFFER - END_BUFFER; // == maxScroll
     let x = 0;
     if (activeSpan > 0) {
       const p = Math.max(0, Math.min(1, active / activeSpan));
