@@ -23,12 +23,16 @@
   const stripsEl = document.getElementById("galleryStrips");
   const emptyEl = document.getElementById("eventoEmpty");
 
-  const photos = window.soulmaraEventPhotos
+  // A real gallery requires an actual photo folder (dir + count). Poster-only
+  // placeholder events don't count as having a gallery, so they show the
+  // "no gallery yet" message rather than a strip of the repeated cover.
+  const hasGallery = !!(ev && ev.dir && ev.count);
+  const photos = hasGallery && window.soulmaraEventPhotos
     ? window.soulmaraEventPhotos(ev)
     : [];
 
-  // Not found / no photos → show the fallback message.
-  if (!ev || !photos.length) {
+  // Not found, or no real gallery → show the fallback message.
+  if (!ev || !hasGallery || !photos.length) {
     if (titleEl) titleEl.textContent = "Evento";
     if (emptyEl) emptyEl.hidden = false;
     if (ev) {
