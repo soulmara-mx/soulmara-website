@@ -14,9 +14,6 @@
 <body>
   <!-- ============ INTRO / SPLASH ANIMATION ============ -->
   <div id="intro" class="intro" aria-hidden="true">
-    <!-- Stacked SOUL / MARA logotype (real brand asset), fades in then
-         zooms into the O of SOUL (the moon/star). Zoom origin is set on
-         .intro__logo via CSS to the measured center of the O. -->
     <div class="intro__logo" id="introLogo">
       <img
         src="./assets/img/logo-stacked-dark.png"
@@ -54,27 +51,17 @@
       </span>
     </header>
 
-    <!-- Hero -->
     <main id="top">
+      <!-- ===== 1. HERO ===== -->
       <section class="hero">
         <div class="hero__media">
-          <!-- Placeholder gradient/starfield stands in for the band photo -->
           <div class="hero__bg"></div>
           <div class="hero__grain"></div>
         </div>
-
-        <!-- <span class="hero__side hero__side--left">SOULMARA 2026</span>
-        <span class="hero__side hero__side--right">SOULMARA 2026</span> -->
-
-        <h1 class="hero__title">
-          <!-- <span class="hero__line">SoulMara</span> -->
-          <!-- <span class="hero__line hero__line--2">CaleidoscopiA</span> -->
-        </h1>
-
-        <a href="#media" class="hero__scroll">SCROLL <span>↓</span></a>
+        <h1 class="hero__title"></h1>
       </section>
 
-      <!-- Image carousel footer -->
+      <!-- ===== 2. CAROUSEL ===== -->
       <footer id="media" class="carousel" aria-label="Galería">
         <div class="carousel__viewport">
           <div class="carousel__track" id="carouselTrack">
@@ -97,6 +84,297 @@
           </div>
         </div>
       </footer>
+
+      <!-- ===== 3. EVENTOS ===== -->
+      <section class="home-section press__section" id="eventos" aria-label="Eventos">
+        <h2 class="home-section__title">EVENTOS</h2>
+
+        <h3 class="events__heading">PRÓXIMOS EVENTOS</h3>
+        <div class="events">
+          <article class="event">
+            <div class="event__photo" style="background-image:url('./assets/img/hero.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">Todos Somos Mexicali</h2>
+              <p class="event__date">26 Septiembre 2026</p>
+              <p class="event__venue">Tu Parque</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="event__photo" style="background-image:url('./assets/img/hero.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">Ruido by Scaleta</h2>
+              <p class="event__date">25 Septiembre 2026</p>
+              <p class="event__venue">Malgro Cervecería Tap Room</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="events__heading">EVENTOS PASADOS</h3>
+        <div class="events">
+          <a class="event" data-event="tijuana-rock-bar" href="./evento.html#tijuana-rock-bar">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-8.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">5 Septiembre 2026</p>
+              <p class="event__venue">Tijuana Rock bar</p>
+              <p class="event__venue">Tijuana, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="malgro-tap-room" href="./evento.html#malgro-tap-room">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-7.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">22 Agosto 2026</p>
+              <p class="event__venue">Malgro Cervecería Tap Room</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="cafe-la-bohemia-tecate" href="./evento.html#cafe-la-bohemia-tecate">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-6.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">15 Agosto 2026</p>
+              <p class="event__venue">Café La Bohemia</p>
+              <p class="event__venue">Tecate, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="cafe-literario" href="./evento.html#cafe-literario">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-5.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">7 Agosto 2026</p>
+              <p class="event__venue">Café Literario</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="amante-brew" href="./evento.html#amante-brew">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-4.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">1 Agosto 2026</p>
+              <p class="event__venue">Amante Brew</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="casa-verde-ensenada" href="./evento.html#casa-verde-ensenada">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-3.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">25 Julio 2026</p>
+              <p class="event__venue">Casa Verde Brew</p>
+              <p class="event__venue">Ensenada, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="release-party-ceart" href="./evento.html#release-party-ceart">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-2.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Release Party</h2>
+              <p class="event__date">10 Julio 2026</p>
+              <p class="event__venue">Foro Experimental CEART</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </a>
+          <a class="event" data-event="barrio-chino" href="./evento.html#barrio-chino">
+            <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/fecha-1.jpg')" aria-hidden="true"></div>
+            <div class="event__body">
+              <h2 class="event__name">CaleidoscopiA Tour</h2>
+              <p class="event__date">8 Julio 2026</p>
+              <p class="event__venue">Barrio Chino</p>
+              <p class="event__venue">Mexicali, B.C.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ===== 4. MÚSICA (pinned horizontal scroll) ===== -->
+      <!-- Outer wrapper is tall; its height determines how much vertical
+           scroll maps to horizontal strip movement. The inner viewport pins
+           (sticky) while you scroll through the albums. -->
+      <section class="music-pin" id="musica" aria-label="Música">
+        <div class="music-pin__viewport">
+          <div class="music-pin__inner press__section">
+            <h2 class="home-section__title">MÚSICA</h2>
+            <!-- Static row of album covers; moved horizontally by JS on scroll. -->
+            <div class="music-strip" id="musicStrip" aria-label="Discografía"></div>
+            <p class="home-section__more">
+              <a href="./musica.html">Ver toda la música →</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. PRESS KIT ===== -->
+      <section class="home-section" id="press-kit" aria-label="Press Kit">
+        <h2 class="home-section__title">PRESS KIT</h2>
+
+        <div class="press press--inline">
+          <!-- BIO -->
+          <section class="press__section press__bio" aria-label="Biografía">
+            <img src="./assets/img/wordmark-white.png" alt="SoulMara" class="press__wordmark" />
+            <p class="press__lead">
+              Banda emergente de Mexicali, Baja California, México.
+              <strong>SoulMara</strong> fusiona pop en español con indie folk,
+              synthpop, R&amp;B alternativo y post-punk, creando melodías emotivas
+              y atmósferas introspectivas. Su propuesta combina teatralidad,
+              narrativa intensa y energía cruda, ofreciendo un sonido distintivo
+              que conecta profundamente con el público.
+            </p>
+            <p class="press__tagline">NO HAY INSTRUCCIONES. SOLO EMOCIÓN. SOLO MÚSICA.</p>
+          </section>
+
+          <!-- MEMBERS -->
+          <section class="press__section" aria-label="Integrantes">
+            <ul class="members">
+              <li class="member">
+                <div class="member__photo member__photo--daniel" style="background-image:url('./assets/press-member-img/daniel.jpg')" aria-hidden="true"></div>
+                <span class="member__role">Bajista</span>
+                <span class="member__name">Daniel</span>
+              </li>
+              <li class="member">
+                <div class="member__photo member__photo--angel" style="background-image:url('./assets/press-member-img/angel.jpg')" aria-hidden="true"></div>
+                <span class="member__role">Guitarrista</span>
+                <span class="member__name">Angel</span>
+              </li>
+              <li class="member">
+                <div class="member__photo member__photo--almara" style="background-image:url('./assets/press-member-img/almara.jpg')" aria-hidden="true"></div>
+                <span class="member__role">Vocalista</span>
+                <span class="member__name">Almara</span>
+              </li>
+              <li class="member">
+                <div class="member__photo member__photo--pali" style="background-image:url('./assets/press-member-img/pali.jpg')" aria-hidden="true"></div>
+                <span class="member__role">Tecladista</span>
+                <span class="member__name">Pali</span>
+                <span class="member__nickname">(Alejandro)</span>
+              </li>
+              <li class="member">
+                <div class="member__photo member__photo--omar" style="background-image:url('./assets/press-member-img/omar.jpg')" aria-hidden="true"></div>
+                <span class="member__role">Baterista</span>
+                <span class="member__name">Omar</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- FESTIVALES / SHOWS -->
+          <section class="press__section press__shows" aria-label="Festivales y shows">
+            <h2 class="press__title press__title_margin">FESTIVALES &amp; SHOWS</h2>
+            <p class="press__body">
+              SoulMara ha participado en más de 60 eventos en México y Estados
+              Unidos, presentándose en festivales, ferias y shows independientes
+              en ciudades como Mexicali, Ensenada, Tijuana y San Diego, destacando
+              por su energía en el escenario y su conexión con el público.
+            </p>
+            <p class="press__body">Entre sus participaciones más notables se encuentran:</p>
+            <ul class="shows__list">
+              <li>San Diego County Fair 2024, 2025</li>
+              <li>La Margarita Mas Grande Del Mundo, Tijuana 2025</li>
+              <li>Isla de las Estrellas, Fiestas del Sol, Mexicali 2025</li>
+              <li>Fan Fest, Mexicali 2025</li>
+            </ul>
+            <p class="press__body">
+              Además de haber sido teloneros de “Su Majestad Mi Banda El Mexicano
+              y Amantes de Lola” en la Posada Skyworks en 2025.
+            </p>
+            <div class="shows__gallery" aria-hidden="true">
+              <div class="shows__thumb" style="background-image:url('./assets/press-events-img/sanDiegoCountyFair.JPG')"></div>
+              <div class="shows__thumb" style="background-image:url('./assets/press-events-img/margarita.jpg')"></div>
+              <div class="shows__thumb" style="background-image:url('./assets/press-events-img/fiestasDelSol.jpg')"></div>
+              <div class="shows__thumb" style="background-image:url('./assets/press-events-img/skyworks.jpg')"></div>
+            </div>
+          </section>
+
+          <!-- SOCIAL MEDIA + AUDIENCIA -->
+          <section class="press__section" aria-label="Redes sociales">
+            <h2 class="press__title press__title_margin">SOCIAL MEDIA</h2>
+            <div class="press__photo" style="background-image:url('./assets/press-social-media-img/dlvMedia.JPG')" aria-hidden="true"></div>
+            <div class="stats">
+              <a class="stat" href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="SoulMara en Spotify">
+                <span class="stat__label"><img src="./assets/icons/spotify.svg" alt="" /> Spotify</span>
+                <span class="stat__value">1.8K</span>
+                <span class="stat__sub">Followers</span>
+              </a>
+              <a class="stat" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="SoulMara en Instagram">
+                <span class="stat__label"><img src="./assets/icons/instagram.svg" alt="" /> Instagram</span>
+                <span class="stat__value">11K</span>
+                <span class="stat__sub">Followers</span>
+              </a>
+              <a class="stat" href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="SoulMara en YouTube">
+                <span class="stat__label"><img src="./assets/icons/youtube.svg" alt="" /> Youtube</span>
+                <span class="stat__value">15K</span>
+                <span class="stat__sub">Subscribers</span>
+              </a>
+              <a class="stat" href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="SoulMara en TikTok">
+                <span class="stat__label"><img src="./assets/icons/tiktok.svg" alt="" /> Tik Tok</span>
+                <span class="stat__value">7.4K</span>
+                <span class="stat__sub">Followers</span>
+              </a>
+            </div>
+
+            <h2 class="press__title" style="margin-top:3rem;">AUDIENCIA</h2>
+            <div class="audience">
+              <div class="audience__item">
+                <span class="audience__label">Genero</span>
+                <span class="audience__value">49.2%</span>
+                <span class="audience__sub">Mujeres</span>
+              </div>
+              <div class="audience__item">
+                <span class="audience__label">Rango de edad</span>
+                <span class="audience__value">43.7%</span>
+                <span class="audience__sub">25-34 años</span>
+              </div>
+              <div class="audience__item">
+                <span class="audience__label">Locación</span>
+                <span class="audience__value">63.7%</span>
+                <span class="audience__sub">Mexico</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- LANZAMIENTOS -->
+          <section class="press__section" aria-label="Lanzamientos">
+            <h2 class="press__title press__title_margin">LANZAMIENTOS</h2>
+            <div class="gallery">
+              <article class="record">
+                <div class="record__cover" style="background-image:url('./assets/music-img/DLV.jpg')">
+                  <span class="record__name">DLV</span>
+                </div>
+                <div class="record__caption record__caption--stats">
+                  <a class="record__stat" href="https://open.spotify.com/track/0BITsQH8TuJb642OJae9cc?si=89a424d54e494363" target="_blank" rel="noopener noreferrer" aria-label="DLV en Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /> 31.2K</a>
+                  <a class="record__stat" href="https://www.youtube.com/watch?v=n092hLTkwsQ" target="_blank" rel="noopener noreferrer" aria-label="DLV en YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /> 501K</a>
+                </div>
+              </article>
+              <article class="record">
+                <div class="record__cover" style="background-image:url('./assets/music-img/Luz-Primavera.jpg')">
+                  <span class="record__name">Luz Primavera</span>
+                </div>
+                <div class="record__caption record__caption--stats">
+                  <a class="record__stat" href="https://open.spotify.com/track/06cyLYRYdF6vgAjkN7SAwl?si=7d2138a3ee1641af" target="_blank" rel="noopener noreferrer" aria-label="Luz Primavera en Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /> 85.4K</a>
+                  <a class="record__stat" href="https://www.youtube.com/watch?v=xjAZBDrnvrA" target="_blank" rel="noopener noreferrer" aria-label="Luz Primavera en YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /> 228K</a>
+                </div>
+              </article>
+              <article class="record">
+                <div class="record__cover" style="background-image:url('./assets/music-img/Dices.jpg')">
+                  <span class="record__name">Dices</span>
+                </div>
+                <div class="record__caption record__caption--stats">
+                  <a class="record__stat" href="https://open.spotify.com/track/0A3j6KZ7nlqkNLoFtHOqfm?si=98cf5b80c8ab4705" target="_blank" rel="noopener noreferrer" aria-label="Dices en Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /> 32.2K</a>
+                  <a class="record__stat" href="https://www.youtube.com/watch?v=5KwGfm9Puso" target="_blank" rel="noopener noreferrer" aria-label="Dices en YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /> 82K</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- CONTACTO -->
+          <section class="press__section press__contact" aria-label="Contacto">
+            <h2 class="press__title press__title_margin">CONTACTO</h2>
+            <div class="contact">
+              <a class="contact__card" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
+              <a class="contact__card" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
+            </div>
+          </section>
+        </div>
+      </section>
     </main>
 
     <!-- ============ FOOTER ============ -->
@@ -110,11 +388,7 @@
         </div>
         <div class="site-footer__group site-footer__group--contact">
           <a class="press__handle" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer">@soulmara_mx</a>
-        </div>
-        <div class="site-footer__group site-footer__group--contact">
           <a class="press__handle" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
-        </div>
-        <div class="site-footer__group site-footer__group--contact">
           <a class="press__handle" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
         </div>
         <div class="site-footer__group site-footer__group--socials site-footer__socials">
@@ -129,5 +403,9 @@
   </div>
 
   <script src="./js/main.js"></script>
+  <script src="./js/eventos-data.js"></script>
+  <script src="./js/eventos.js"></script>
+  <script src="./js/index-music-strip.js"></script>
+  <script src="./js/musica.js"></script>
 </body>
 </html>

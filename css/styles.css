@@ -1492,3 +1492,128 @@ body {
 .media__strips {
   --strip-h: clamp(140px, 20vh, 220px);
 }
+
+/* ============================================================
+   LANDING PAGE — stacked modules (hero → carousel → eventos →
+   música strip → press kit). Each section sits above the site
+   background; inner reveal blocks fade in on scroll.
+   ============================================================ */
+.home-section {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4.5rem clamp(1.2rem, 5vw, 4rem);
+}
+.home-section__title {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--cream);
+  text-align: center;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+}
+.home-section__more {
+  margin-top: 2rem;
+  text-align: center;
+}
+.home-section__more a {
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.85;
+  letter-spacing: 0.06em;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(234, 228, 216, 0.4);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.home-section__more a:hover { opacity: 1; }
+
+/* The events grids sit inside a .home-section here (no separate .musica
+   main), so give them the standard centered max width. */
+.home-section .events,
+.home-section .events__heading { max-width: 100%; }
+
+/* Press kit rendered inline inside the landing page: drop the page-level
+   top padding the standalone .press has, since the home-section already
+   provides spacing. */
+.press--inline {
+  padding: 0;
+  max-width: 100%;
+}
+
+/* ---- MÚSICA: pinned horizontal-scroll strip ----
+   Outer wrapper is one viewport tall PLUS the horizontal distance (set by JS
+   as --pin-extra). The viewport sticks while that extra height scrolls, and
+   JS maps the scroll progress to horizontal movement of the track. */
+.music-pin {
+  --strip-h: clamp(160px, 24vw, 260px);
+  --pin-extra: 0px;
+  position: relative;
+  z-index: 1;
+  height: calc(100vh + var(--pin-extra));
+}
+.music-pin__viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.music-pin__inner {
+  width: 100%;
+}
+
+/* Full-viewport-width strip container; the track inside can overflow right. */
+.music-strip {
+  width: 100%;
+  overflow: hidden;
+}
+.music-strip__track {
+  display: flex;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+  width: max-content;
+  /* Start the first cover at the same left edge as the centered 1200px
+     content (like the events grid), and end the last cover at the matching
+     right edge. On narrow screens both collapse to the normal page inset. */
+  padding-left: max(clamp(1.2rem, 5vw, 4rem), (100vw - 1200px) / 2);
+  padding-right: max(clamp(1.2rem, 5vw, 4rem), (100vw - 1200px) / 2);
+  will-change: transform;
+}
+.music-strip .strip__item {
+  flex: 0 0 auto;
+  height: var(--strip-h);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+.music-strip .strip__item img {
+  height: 100%;
+  width: auto;
+  display: block;
+  filter: grayscale(1);
+  transition: filter 0.3s var(--ease-out);
+}
+.music-strip .strip__item:hover img { filter: grayscale(0); }
+
+/* Reduced motion / no-JS: no pinning — just a normal horizontally-scrollable
+   row so all albums remain reachable. */
+@media (prefers-reduced-motion: reduce) {
+  .music-pin { height: auto; }
+  .music-pin__viewport { position: static; height: auto; padding: 3rem 0; }
+  .music-strip { overflow-x: auto; }
+}
+
+@media (max-width: 640px) {
+  .home-section { padding: 3.5rem 0; }
+  .home-section__title { padding: 0 1rem; }
+  .home-section .events,
+  .home-section .events__heading { padding-left: 1rem; padding-right: 1rem; }
+}

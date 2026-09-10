@@ -34,7 +34,8 @@
 
   const STRIP_COUNT = 5;
   // Per-strip base speeds (px/sec); varied so strips don't march in lockstep.
-  const SPEEDS = [60, 80, 55, 72, 64];
+  // Halved from the original for a calmer pace.
+  const SPEEDS = [30, 40, 28, 36, 32];
   const SLOW_FACTOR = 0.35;
   const MIN_ITEMS_PER_SET = 8;
 
@@ -70,8 +71,11 @@
           const img = document.createElement("img");
           img.src = photo.thumb;
           img.alt = photo.title || "SoulMara";
-          img.loading = "lazy";
+          // Eager-load: the thumbnails are tiny, and lazy-loading in a moving
+          // marquee causes images to pop to full size mid-scroll (and corrupts
+          // the loop-width measurement). Re-measure whenever one loads.
           img.decoding = "async";
+          img.addEventListener("load", scheduleMeasure);
 
           btn.appendChild(img);
           btn.addEventListener("click", () => openLightbox(index));
@@ -110,12 +114,32 @@
 
   function measure() {
     strips.forEach((st) => {
-      st.setWidth = st.track.scrollWidth / 2;
-      st.pos = st.dir > 0 ? -st.setWidth : 0;
+      const newWidth = st.track.scrollWidth / 2;
+      if (!st.setWidth) {
+        // First measurement: set the starting position.
+        st.setWidth = newWidth;
+        st.pos = st.dir > 0 ? -st.setWidth : 0;
+      } else if (newWidth > 0 && Math.abs(newWidth - st.setWidth) > 0.5) {
+        // Width changed (an image finished loading). Keep the current visual
+        // position by scaling pos to the new width, so nothing jumps.
+        st.pos = (st.pos / st.setWidth) * newWidth;
+        st.setWidth = newWidth;
+      }
     });
   }
 
+  // Debounce re-measures triggered by image loads (many fire close together).
+  let measureTimer = null;
+  function scheduleMeasure() {
+    if (measureTimer) return;
+    measureTimer = setTimeout(() => {
+      measureTimer = null;
+      measure();
+    }, 60);
+  }
+
   if (!reduce && strips.length) {
+    measure();
     window.addEventListener("load", measure);
     setTimeout(measure, 200);
     window.addEventListener("resize", measure);

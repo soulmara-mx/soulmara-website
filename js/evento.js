@@ -59,9 +59,9 @@
   // the speed can change smoothly on hover WITHOUT the position jumping — we
   // keep the exact pixel position frame to frame and only vary the velocity.
   const STRIP_COUNT = 3;
-  // Normal (fast) speeds in px/sec; middle strip a touch faster. Hovering eases
-  // to SLOW_FACTOR of these, landing near the previous slower feel.
-  const SPEEDS = [70, 90, 60];
+  // Normal speeds in px/sec; middle strip a touch faster. Hovering eases to
+  // SLOW_FACTOR of these. Halved from the original for a calmer pace.
+  const SPEEDS = [35, 45, 30];
   const SLOW_FACTOR = 0.35;
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -103,8 +103,10 @@
           const img = document.createElement("img");
           img.src = photo.thumb;
           img.alt = ev.title + " — foto " + (index + 1);
-          img.loading = "lazy";
+          // Eager-load: lazy-loading in a moving marquee makes images pop to
+          // full size mid-scroll and corrupts the loop-width measurement.
           img.decoding = "async";
+          img.addEventListener("load", scheduleMeasure);
 
           btn.appendChild(img);
           btn.addEventListener("click", () => openLightbox(index));
@@ -145,13 +147,32 @@
   // once images have laid out, then run the animation loop.
   function measure() {
     strips.forEach((st) => {
-      st.setWidth = st.track.scrollWidth / 2;
-      // Start reverse strips offset by one set so they scroll into view too.
-      st.pos = st.dir > 0 ? -st.setWidth : 0;
+      const newWidth = st.track.scrollWidth / 2;
+      if (!st.setWidth) {
+        st.setWidth = newWidth;
+        // Start reverse strips offset by one set so they scroll into view too.
+        st.pos = st.dir > 0 ? -st.setWidth : 0;
+      } else if (newWidth > 0 && Math.abs(newWidth - st.setWidth) > 0.5) {
+        // An image finished loading and changed the width — keep the current
+        // visual position by scaling pos to the new width, so nothing jumps.
+        st.pos = (st.pos / st.setWidth) * newWidth;
+        st.setWidth = newWidth;
+      }
     });
   }
 
+  // Debounce re-measures triggered by image loads (many fire close together).
+  let measureTimer = null;
+  function scheduleMeasure() {
+    if (measureTimer) return;
+    measureTimer = setTimeout(() => {
+      measureTimer = null;
+      measure();
+    }, 60);
+  }
+
   if (!reduce && strips.length) {
+    measure();
     // Measure after layout/images; recalc on resize.
     window.addEventListener("load", measure);
     setTimeout(measure, 200); // fallback if load already fired
