@@ -1567,11 +1567,16 @@ body {
   width: 100%;
 }
 
-/* Full-viewport-width strip container; the track inside can overflow right. */
+/* Full-viewport-width strip container; the track inside can overflow right.
+   touch-action: pan-y lets the browser handle vertical scroll natively while
+   we handle horizontal swipes in JS (converting them to page scroll). */
 .music-strip {
   width: 100%;
   overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
 }
+.music-strip:active { cursor: grabbing; }
 .music-strip__track {
   display: flex;
   gap: clamp(0.8rem, 2vw, 1.4rem);
@@ -1616,4 +1621,6 @@ body {
   .home-section__title { padding: 0 1rem; }
   .home-section .events,
   .home-section .events__heading { padding-left: 1rem; padding-right: 1rem; }
+  /* Press kit: keep a 1rem breathing margin from the viewport edges. */
+  #press-kit .press--inline { padding-left: 1rem; padding-right: 1rem; }
 }

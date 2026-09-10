@@ -52,16 +52,21 @@
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Dwell buffer (px of scroll) held at each end before the strip starts /
+  // after it finishes moving — so reaching the end doesn't immediately drop
+  // you into the next section, and there's leeway at the start too.
+  const BUFFER = Math.round(window.innerHeight * 0.5);
+
   // How far the strip must travel horizontally (its overflow past the strip
   // container width). Measured after images load / on resize.
   let maxScroll = 0;
   function measure() {
     // The strip container is viewport-width; the track may be wider.
     maxScroll = Math.max(0, track.scrollWidth - stripEl.clientWidth);
-    // The outer wrapper's extra height (beyond one viewport) is what gets
-    // "spent" scrolling horizontally. Tie it to the horizontal distance so
-    // the mapping feels 1:1-ish. Extra height = maxScroll px.
-    pinEl.style.setProperty("--pin-extra", maxScroll + "px");
+    // The wrapper's extra height = horizontal travel PLUS a buffer at each end
+    // (only added when there's actually something to scroll horizontally).
+    const extra = maxScroll > 0 ? maxScroll + BUFFER * 2 : 0;
+    pinEl.style.setProperty("--pin-extra", extra + "px");
     onScroll();
   }
 
@@ -69,14 +74,22 @@
     if (reduce) return;
     const rect = pinEl.getBoundingClientRect();
     const total = pinEl.offsetHeight - window.innerHeight; // scrollable span
-    if (total <= 0) {
+    if (total <= 0 || maxScroll <= 0) {
       track.style.transform = "translateX(0)";
       return;
     }
-    // progress 0 → 1 as the wrapper scrolls past the pinned viewport.
-    let progress = -rect.top / total;
-    progress = Math.max(0, Math.min(1, progress));
-    track.style.transform = "translateX(" + -(progress * maxScroll) + "px)";
+    // Raw scrolled distance into the pinned section, in px.
+    const scrolled = Math.max(0, Math.min(total, -rect.top));
+    // Map only the MIDDLE of the scroll to horizontal travel: the first
+    // BUFFER px holds at the start, the last BUFFER px holds at the end.
+    const active = scrolled - BUFFER;
+    const activeSpan = total - BUFFER * 2; // == maxScroll
+    let x = 0;
+    if (activeSpan > 0) {
+      const p = Math.max(0, Math.min(1, active / activeSpan));
+      x = p * maxScroll;
+    }
+    track.style.transform = "translateX(" + -x + "px)";
   }
 
   if (!reduce) {
@@ -85,5 +98,73 @@
     window.addEventListener("load", measure);
     measure();
     setTimeout(measure, 200);
+
+    // ---- Direct horizontal drag / swipe on the strip ----
+    // Dragging horizontally converts into page scroll, so the existing pin
+    // math (page scroll → translateX) stays the single source of truth. This
+    // lets touch users swipe the covers instead of being forced to guess the
+    // vertical-scroll mapping — and it can't fight the scroll handler.
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startScrollY = 0;
+    let axisLocked = null; // 'x' once we decide it's a horizontal swipe
+    let moved = false;
+    const AXIS_THRESHOLD = 8; // px before we commit to an axis
+
+    stripEl.addEventListener("pointerdown", (e) => {
+      // Only primary button / touch / pen.
+      if (e.button != null && e.button !== 0) return;
+      dragging = true;
+      moved = false;
+      axisLocked = null;
+      startX = e.clientX;
+      startY = e.clientY;
+      startScrollY = window.scrollY;
+    });
+
+    window.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      // Decide the gesture axis once past the threshold.
+      if (!axisLocked) {
+        if (Math.abs(dx) < AXIS_THRESHOLD && Math.abs(dy) < AXIS_THRESHOLD) return;
+        axisLocked = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+        if (axisLocked === "y") {
+          // Vertical gesture: let the page scroll normally, stop tracking.
+          dragging = false;
+          return;
+        }
+      }
+
+      if (axisLocked === "x") {
+        moved = true;
+        // Prevent the native drag/text-select while swiping horizontally.
+        if (e.cancelable) e.preventDefault();
+        // Dragging left (dx negative) should advance the strip → scroll page
+        // down. Match 1:1 with the pointer movement.
+        window.scrollTo(0, startScrollY - dx);
+      }
+    }, { passive: false });
+
+    function endDrag() { dragging = false; }
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
+
+    // Suppress the click→open when the pointer was actually a horizontal drag,
+    // so swiping doesn't accidentally open Spotify.
+    stripEl.addEventListener(
+      "click",
+      (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      },
+      true
+    );
   }
 })();

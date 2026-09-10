@@ -236,6 +236,58 @@
     }
   });
 
+  // ---- Swipe / drag to cycle (touch + mouse) ----
+  // The carousel cross-fades rather than sliding, so a swipe just triggers
+  // next/prev on release once it passes a horizontal threshold. Vertical
+  // gestures are ignored so page scrolling still works over the carousel.
+  const viewport = carousel.querySelector(".carousel__viewport") || carousel;
+  let swActive = false;
+  let swX = 0;
+  let swY = 0;
+  let swAxis = null; // 'x' | 'y'
+  const SWIPE_MIN = 40; // px to count as a swipe
+  const AXIS_LOCK = 10; // px before deciding direction
+
+  viewport.addEventListener("pointerdown", (e) => {
+    if (e.button != null && e.button !== 0) return;
+    swActive = true;
+    swAxis = null;
+    swX = e.clientX;
+    swY = e.clientY;
+  });
+
+  viewport.addEventListener(
+    "pointermove",
+    (e) => {
+      if (!swActive) return;
+      const dx = e.clientX - swX;
+      const dy = e.clientY - swY;
+      if (!swAxis) {
+        if (Math.abs(dx) < AXIS_LOCK && Math.abs(dy) < AXIS_LOCK) return;
+        swAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+        if (swAxis === "y") swActive = false; // let the page scroll
+      }
+      if (swAxis === "x" && e.cancelable) e.preventDefault();
+    },
+    { passive: false }
+  );
+
+  function endSwipe(e) {
+    if (!swActive) return;
+    swActive = false;
+    if (swAxis !== "x") return;
+    const dx = e.clientX - swX;
+    if (Math.abs(dx) < SWIPE_MIN) return;
+    // Swipe left → next image; swipe right → previous.
+    goTo(index + (dx < 0 ? 1 : -1));
+    resetTimer();
+  }
+  viewport.addEventListener("pointerup", endSwipe);
+  viewport.addEventListener("pointercancel", () => (swActive = false));
+
+  // Allow vertical scrolling but let us handle horizontal swipes.
+  viewport.style.touchAction = "pan-y";
+
   // Start cycling right away and keep it running for the life of the page.
   start();
 })();
