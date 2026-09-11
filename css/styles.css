@@ -176,6 +176,14 @@ body {
   padding: 1.4rem 2rem;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
+  transition: transform 0.35s var(--ease-out);
+}
+/* Hidden when scrolling down; slides back in when scrolling up.
+   Specificity must beat `.site.reveal-layout .nav` (0,3,0) which pins the
+   reveal transform to translateY(0), so we qualify with .site too. */
+.site .nav.nav--hidden,
+.site.reveal-layout .nav.nav--hidden {
+  transform: translateY(-100%);
 }
 
 .nav__links {
