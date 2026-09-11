@@ -1237,6 +1237,12 @@ body {
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
   margin-bottom: 0.9rem;
 }
+/* Upcoming-event flyers show in full color (they're posters, not B&W show
+   photos). Also center them so the whole flyer reads. */
+.event--flyer .event__photo {
+  filter: none;
+  background-position: center;
+}
 
 .event__body {
   display: flex;
