@@ -69,14 +69,16 @@ window.SOULMARA_EVENTS = {
     date: "22 Agosto 2026",
     venue: "Malgro Cervecería Tap Room",
     city: "Mexicali, B.C.",
-    poster: "./assets/eventos-cover-img/pasados/fecha-7.jpg",
+    dir: "./assets/eventos-gallery-img/evento-7",
+    count: 38,
   },
   "tijuana-rock-bar": {
     title: "CaleidoscopiA Tour",
     date: "5 Septiembre 2026",
     venue: "Tijuana Rock bar",
     city: "Tijuana, B.C.",
-    poster: "./assets/eventos-cover-img/pasados/fecha-8.jpg",
+    dir: "./assets/eventos-gallery-img/evento-8",
+    count: 41,
   },
 };
 
