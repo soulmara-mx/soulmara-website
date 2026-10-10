@@ -169,7 +169,7 @@ window.SOULMARA_EVENTS = {
   },
 
   "malgro-chucho": {
-    title: "CaleidoscopiA Tour",
+    title: "Chucho Rivas: Ojalá que nunca vengas a este tour",
     date: "3 Octubre 2026",
     venue: "Malgro Tap Room",
     city: "Mexicali, B.C.",
@@ -177,7 +177,7 @@ window.SOULMARA_EVENTS = {
   },
 
   "love-song-bar-la": {
-    title: "CaleidoscopiA Tour",
+    title: "An early halloween takeover with Selines",
     date: "4 Octubre 2026",
     venue: "The Love Song Bar",
     city: "Los Ángeles, CA",
