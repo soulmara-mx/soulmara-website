@@ -12,12 +12,13 @@
   const stripsEl = document.getElementById("mediaStrips");
   if (!stripsEl) return;
 
-  // Gather photos from every event that has a real gallery (dir + count).
+  // Gather photos from every event that has a real gallery.
+  // Two formats: dir+count (numbered files) and dir+files (explicit names).
   // Poster-only placeholders are skipped so the wall is all real photos.
   let allPhotos = [];
   Object.keys(events).forEach((id) => {
     const ev = events[id];
-    if (ev && ev.dir && ev.count) {
+    if (ev && ev.dir && (ev.count || ev.files)) {
       getPhotos(ev).forEach((p) =>
         allPhotos.push({ full: p.full, thumb: p.thumb, title: ev.title })
       );

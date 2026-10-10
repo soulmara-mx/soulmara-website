@@ -23,24 +23,21 @@
   const stripsEl = document.getElementById("galleryStrips");
   const emptyEl = document.getElementById("eventoEmpty");
 
-  // A real gallery requires an actual photo folder (dir + count). Poster-only
-  // placeholder events don't count as having a gallery, so they show the
-  // "no gallery yet" message rather than a strip of the repeated cover.
-  const hasGallery = !!(ev && ev.dir && ev.count);
+  // A real gallery requires photos. Two formats are supported:
+  //   dir + count  → numbered files 1.jpg .. N.jpg
+  //   dir + files  → explicit filename array (events with non-sequential names)
+  // Events with only a `cover` (no photos yet) are valid events — they show
+  // the "próximamente" empty state with correct title/meta.
+  const hasGallery = !!(ev && ev.dir && (ev.count || (ev.files && ev.files.length)));
   const photos = hasGallery && window.soulmaraEventPhotos
     ? window.soulmaraEventPhotos(ev)
     : [];
 
-  // Not found, or no real gallery → show the fallback message.
+  // No real gallery → show the empty state with the event's title/meta.
   if (!ev || !hasGallery || !photos.length) {
-    if (titleEl) titleEl.textContent = "Evento";
+    if (titleEl) titleEl.textContent = ev ? (ev.title || "Evento") : "Evento";
+    if (metaEl && ev) metaEl.textContent = [ev.date, ev.venue, ev.city].filter(Boolean).join(" · ");
     if (emptyEl) emptyEl.hidden = false;
-    if (ev) {
-      titleEl.textContent = ev.title || "Evento";
-      metaEl.textContent = [ev.date, ev.venue, ev.city]
-        .filter(Boolean)
-        .join(" · ");
-    }
     document.title = (ev && ev.title ? ev.title : "Evento") + " — SOULMARA";
     return;
   }
