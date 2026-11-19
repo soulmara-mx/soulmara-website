@@ -1545,6 +1545,21 @@ body {
 }
 .home-section__more a:hover { opacity: 1; }
 
+/* Bandsintown concerts widget: transparent so the page background shows
+   through, site body font, same width as the other home sections. */
+.concerts { padding-bottom: 1rem; }
+.concerts__widget {
+  max-width: 100%;
+  font-family: var(--body);
+  color: var(--cream);
+}
+.concerts__widget [class*="bit-"],
+.concerts__widget a,
+.concerts__widget button { font-family: var(--body); }
+@media (max-width: 640px) {
+  .home-section.concerts { padding-left: 1rem; padding-right: 1rem; }
+}
+
 /* The events grids sit inside a .home-section here (no separate .musica
    main), so give them the standard centered max width. */
 .home-section .events,
