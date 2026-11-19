@@ -1,289 +1,314 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EVENTOS — SOULMARA</title>
-  <meta name="description" content="SOULMARA — eventos." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="icon" type="image/png" href="./assets/img/favicon-32.png" />
-  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
-</head>
-<body>
-  <!-- ============ MAIN SITE ============ -->
-  <div id="site" class="site is-visible reveal-hero reveal-layout">
-    <!-- Fixed, blurred, slowly-breathing background (same hero photo) -->
-    <div class="musica-bg" aria-hidden="true"></div>
-
-    <!-- Top navigation (same as home) -->
-    <header class="nav">
-      <nav class="nav__links nav__links--left" aria-label="Principal">
-        <a href="./musica.html">MÚSICA</a>
-        <a href="./press-kit.html">PRESS KIT</a>
-      </nav>
-
-      <a href="./index.html" class="nav__brand" aria-label="SoulMara inicio"
-         onclick="sessionStorage.setItem('skipIntro', '1')">
-        <img src="./assets/img/icon-white.png" alt="SoulMara" class="nav__brand-icon" />
-      </a>
-
-      <nav class="nav__links nav__links--right" aria-label="Secundaria">
-        <a href="./media.html">MEDIA</a>
-        <a href="./eventos.html" aria-current="page">EVENTOS</a>
-      </nav>
-
-      <span class="nav__socials">
-        <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
-        <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
-        <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
-        <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
-        <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
-      </span>
-    </header>
-
-    <!-- ============ EVENTOS ============ -->
-    <main class="musica" id="top">
-
-      <!-- ===== PRÓXIMOS EVENTOS ===== -->
-      <h2 class="events__heading">PRÓXIMOS EVENTOS</h2>
-      <section class="events" aria-label="Próximos eventos">
-
-        <!-- Upcoming 1 -->
-        <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-aura-violeta.jpg">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-aura-violeta.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Aura Violeta en Foro Dragón</h2>
-            <p class="event__date">20 Noviembre 2026</p>
-            <p class="event__venue">Foro Dragón</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </article>
-
-        <!-- Upcoming 2 -->
-        <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-planta-baja.jpg">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-planta-baja.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour CDMX</h2>
-            <p class="event__date">5 Diciembre 2026</p>
-            <p class="event__venue">Planta Baja</p>
-            <p class="event__venue">CDMX</p>
-          </div>
-        </article>
-
-        <!-- Upcoming 3 -->
-        <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-estudios-noviembre.jpg">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-estudios-noviembre.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour Showcase CDMX</h2>
-            <p class="event__date">10 Diciembre 2026</p>
-            <p class="event__venue">Estudios Noviembre</p>
-            <p class="event__venue">CDMX</p>
-          </div>
-        </article>
-
-      </section>
-
-      <!-- ===== EVENTOS PASADOS ===== -->
-      <h2 class="events__heading">EVENTOS PASADOS</h2>
-      <section class="events" aria-label="Eventos pasados">
-
-        <!-- escena-del-terror -->
-        <a class="event" data-event="escena-del-terror" href="./evento.html#escena-del-terror">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-escena-terror.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Escena del Terror</h2>
-            <p class="event__date">24 Octubre 2026</p>
-            <p class="event__venue">Malgro Cervecería Tap Room</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- monte-carlo -->
-        <a class="event" data-event="monte-carlo" href="./evento.html#monte-carlo">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-monte-carlo.png')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Monte Carlo Fantasmas (Tour)</h2>
-            <p class="event__date">11 Octubre 2026</p>
-            <p class="event__venue">Rock City</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 1 — love-song-bar-la -->
-        <a class="event" data-event="love-song-bar-la" href="./evento.html#love-song-bar-la">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-selines-la.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">An early halloween takeover with Selines</h2>
-            <p class="event__date">7 Octubre 2026</p>
-            <p class="event__venue">The Love Song Bar</p>
-            <p class="event__venue">Los Ángeles, CA</p>
-          </div>
-        </a>
-
-        <!-- Card 2 — malgro-chucho -->
-        <a class="event" data-event="malgro-chucho" href="./evento.html#malgro-chucho">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-chucho.png')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Chucho Rivas: Ojalá que nunca vengas a este tour</h2>
-            <p class="event__date">3 Octubre 2026</p>
-            <p class="event__venue">Malgro Tap Room</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 3 — fiestas-del-sol -->
-        <a class="event" data-event="fiestas-del-sol" href="./evento.html#fiestas-del-sol">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-fds-2026.png')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Fiestas del Sol</h2>
-            <p class="event__date">2 Octubre 2026</p>
-            <p class="event__venue">Fiestas del Sol</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 4 — todos-somos-mexicali -->
-        <a class="event" data-event="todos-somos-mexicali" href="./evento.html#todos-somos-mexicali">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-tsm.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Todos Somos Mexicali</h2>
-            <p class="event__date">26 Septiembre 2026</p>
-            <p class="event__venue">Tu Parque</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 5 — ruido-by-scaleta -->
-        <a class="event" data-event="ruido-by-scaleta" href="./evento.html#ruido-by-scaleta">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-ruido.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">Ruido by Scaleta</h2>
-            <p class="event__date">25 Septiembre 2026</p>
-            <p class="event__venue">Malgro Cervecería Tap Room</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 6 — tijuana-rock-bar -->
-        <a class="event" data-event="tijuana-rock-bar" href="./evento.html#tijuana-rock-bar">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-8.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">5 Septiembre 2026</p>
-            <p class="event__venue">Tijuana Rock bar</p>
-            <p class="event__venue">Tijuana, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 7 — malgro-tap-room -->
-        <a class="event" data-event="malgro-tap-room" href="./evento.html#malgro-tap-room">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-7.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">22 Agosto 2026</p>
-            <p class="event__venue">Malgro Cervecería Tap Room</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 8 — cafe-la-bohemia-tecate -->
-        <a class="event" data-event="cafe-la-bohemia-tecate" href="./evento.html#cafe-la-bohemia-tecate">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-6.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">15 Agosto 2026</p>
-            <p class="event__venue">Café La Bohemia</p>
-            <p class="event__venue">Tecate, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 9 — cafe-literario -->
-        <a class="event" data-event="cafe-literario" href="./evento.html#cafe-literario">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-5.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">7 Agosto 2026</p>
-            <p class="event__venue">Café Literario</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 10 — amante-brew -->
-        <a class="event" data-event="amante-brew" href="./evento.html#amante-brew">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-4.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">1 Agosto 2026</p>
-            <p class="event__venue">Amante Brew</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 11 — casa-verde-ensenada -->
-        <a class="event" data-event="casa-verde-ensenada" href="./evento.html#casa-verde-ensenada">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-3.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">25 Julio 2026</p>
-            <p class="event__venue">Casa Verde Brew</p>
-            <p class="event__venue">Ensenada, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 12 — release-party-ceart -->
-        <a class="event" data-event="release-party-ceart" href="./evento.html#release-party-ceart">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-2.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Release Party</h2>
-            <p class="event__date">10 Julio 2026</p>
-            <p class="event__venue">Foro Experimental CEART</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-        <!-- Card 13 — barrio-chino -->
-        <a class="event" data-event="barrio-chino" href="./evento.html#barrio-chino">
-          <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-1.jpg')" aria-hidden="true"></div>
-          <div class="event__body">
-            <h2 class="event__name">CaleidoscopiA Tour</h2>
-            <p class="event__date">8 Julio 2026</p>
-            <p class="event__venue">Barrio Chino</p>
-            <p class="event__venue">Mexicali, B.C.</p>
-          </div>
-        </a>
-
-      </section>
-    </main>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <div class="site-footer__group">
-          <span class="site-footer__brand">
-            <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
-            SoulMara — 2026
-          </span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EVENTOS — SOULMARA</title>
+        <meta name="description" content="SOULMARA — eventos." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="icon" type="image/png" href="./assets/img/favicon-32.png" />
+        <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+    </head>
+    <body>
+        <div id="site" class="site is-visible reveal-hero reveal-layout">
+            <div class="musica-bg" aria-hidden="true" />
+            <!-- ENCABEZADO -->
+            <header class="nav">
+                <nav class="nav__links nav__links--left" aria-label="Principal">
+                    <a href="./musica.html">MÚSICA</a>
+                    <a href="./press-kit.html">PRESS KIT</a>
+                </nav>
+                <a
+                    href="./index.html"
+                    class="nav__brand"
+                    aria-label="SoulMara inicio"
+                    onclick="sessionStorage.setItem('skipIntro', '1')"
+                >
+                    <img src="./assets/img/icon-white.png" alt="SoulMara" class="nav__brand-icon" />
+                </a>
+                <nav class="nav__links nav__links--right" aria-label="Secundaria">
+                    <a href="./media.html">MEDIA</a>
+                    <a href="./eventos.html" aria-current="page">EVENTOS</a>
+                </nav>
+                <span class="nav__socials">
+                    <a
+                        href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Spotify"
+                    >
+                        <img src="./assets/icons/spotify.svg" alt="Spotify" />
+                    </a>
+                    <a
+                        href="https://music.apple.com/artist/soulmara/1723915183"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Apple Music"
+                    >
+                        <img src="./assets/icons/apple-music.svg" alt="Apple Music" />
+                    </a>
+                    <a
+                        href="https://www.youtube.com/@soulmara_mx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="YouTube"
+                    >
+                        <img src="./assets/icons/youtube.svg" alt="YouTube" />
+                    </a>
+                    <a
+                        href="https://www.tiktok.com/@soulmara_mx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="TikTok"
+                    >
+                        <img src="./assets/icons/tiktok.svg" alt="TikTok" />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/soulmara_mx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <img src="./assets/icons/instagram.svg" alt="Instagram" />
+                    </a>
+                </span>
+            </header>
+            <!-- ============ EVENTOS ============ -->
+            <main class="musica" id="top">
+                <!-- ===== PRÓXIMOS EVENTOS ===== -->
+                <h2 class="events__heading">PRÓXIMOS EVENTOS</h2>
+                <section class="events" aria-label="Próximos eventos">
+                    <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-aura-violeta.jpg">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-aura-violeta.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Aura Violeta en Foro Dragón</h2>
+                            <p class="event__date">20 Noviembre 2026</p>
+                            <p class="event__venue">Foro Dragón</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </article>
+                    <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-planta-baja.jpg">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-planta-baja.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour CDMX</h2>
+                            <p class="event__date">5 Diciembre 2026</p>
+                            <p class="event__venue">Planta Baja</p>
+                            <p class="event__venue">CDMX</p>
+                        </div>
+                    </article>
+                    <article class="event event--flyer" data-flyer="./assets/eventos-cover-img/proximos/flyer-estudios-noviembre.jpg">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/proximos/flyer-estudios-noviembre.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour Showcase CDMX</h2>
+                            <p class="event__date">10 Diciembre 2026</p>
+                            <p class="event__venue">Estudios Noviembre</p>
+                            <p class="event__venue">CDMX</p>
+                        </div>
+                    </article>
+                </section>
+                <!-- ===== EVENTOS PASADOS ===== -->
+                <h2 class="events__heading">EVENTOS PASADOS</h2>
+                <section class="events" aria-label="Eventos pasados">
+                    <a class="event" data-event="escena-del-terror" href="./evento.html#escena-del-terror">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-escena-terror.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Escena del Terror</h2>
+                            <p class="event__date">24 Octubre 2026</p>
+                            <p class="event__venue">Malgro Cervecería Tap Room</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="monte-carlo" href="./evento.html#monte-carlo">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-monte-carlo.png')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Monte Carlo Fantasmas (Tour)</h2>
+                            <p class="event__date">11 Octubre 2026</p>
+                            <p class="event__venue">Rock City</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="love-song-bar-la" href="./evento.html#love-song-bar-la">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-selines-la.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">An early halloween takeover with Selines</h2>
+                            <p class="event__date">7 Octubre 2026</p>
+                            <p class="event__venue">The Love Song Bar</p>
+                            <p class="event__venue">Los Ángeles, CA</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="malgro-chucho" href="./evento.html#malgro-chucho">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-chucho.png')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Chucho Rivas: Ojalá que nunca vengas a este tour</h2>
+                            <p class="event__date">3 Octubre 2026</p>
+                            <p class="event__venue">Malgro Tap Room</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="fiestas-del-sol" href="./evento.html#fiestas-del-sol">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-fds-2026.png')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Fiestas del Sol</h2>
+                            <p class="event__date">2 Octubre 2026</p>
+                            <p class="event__venue">Fiestas del Sol</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="todos-somos-mexicali" href="./evento.html#todos-somos-mexicali">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-tsm.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Todos Somos Mexicali</h2>
+                            <p class="event__date">26 Septiembre 2026</p>
+                            <p class="event__venue">Tu Parque</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="ruido-by-scaleta" href="./evento.html#ruido-by-scaleta">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/flyer-ruido.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">Ruido by Scaleta</h2>
+                            <p class="event__date">25 Septiembre 2026</p>
+                            <p class="event__venue">Malgro Cervecería Tap Room</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="tijuana-rock-bar" href="./evento.html#tijuana-rock-bar">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-8.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">5 Septiembre 2026</p>
+                            <p class="event__venue">Tijuana Rock bar</p>
+                            <p class="event__venue">Tijuana, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="malgro-tap-room" href="./evento.html#malgro-tap-room">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-7.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">22 Agosto 2026</p>
+                            <p class="event__venue">Malgro Cervecería Tap Room</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="cafe-la-bohemia-tecate" href="./evento.html#cafe-la-bohemia-tecate">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-6.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">15 Agosto 2026</p>
+                            <p class="event__venue">Café La Bohemia</p>
+                            <p class="event__venue">Tecate, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="cafe-literario" href="./evento.html#cafe-literario">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-5.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">7 Agosto 2026</p>
+                            <p class="event__venue">Café Literario</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="amante-brew" href="./evento.html#amante-brew">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-4.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">1 Agosto 2026</p>
+                            <p class="event__venue">Amante Brew</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="casa-verde-ensenada" href="./evento.html#casa-verde-ensenada">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-3.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">25 Julio 2026</p>
+                            <p class="event__venue">Casa Verde Brew</p>
+                            <p class="event__venue">Ensenada, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="release-party-ceart" href="./evento.html#release-party-ceart">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-2.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Release Party</h2>
+                            <p class="event__date">10 Julio 2026</p>
+                            <p class="event__venue">Foro Experimental CEART</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                    <a class="event" data-event="barrio-chino" href="./evento.html#barrio-chino">
+                        <div class="event__photo" style="background-image:url('./assets/eventos-cover-img/pasados/fecha-1.jpg')" aria-hidden="true"></div>
+                        <div class="event__body">
+                            <h2 class="event__name">CaleidoscopiA Tour</h2>
+                            <p class="event__date">8 Julio 2026</p>
+                            <p class="event__venue">Barrio Chino</p>
+                            <p class="event__venue">Mexicali, B.C.</p>
+                        </div>
+                    </a>
+                </section>
+            </main>
+            <!-- ============ FOOTER ============ -->
+            <footer class="site-footer">
+                <div class="site-footer__inner">
+                    <div class="site-footer__group">
+                        <span class="site-footer__brand">
+                            <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
+                            SoulMara — 2026
+                        </span>
+                    </div>
+                    <div class="site-footer__group site-footer__group--contact">
+                        <a class="press__handle" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer">@soulmara_mx</a>
+                        <a class="press__handle" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
+                        <a class="press__handle" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
+                    </div>
+                    <div class="site-footer__group site-footer__group--socials site-footer__socials">
+                        <a
+                            href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Spotify"
+                        >
+                            <img src="./assets/icons/spotify.svg" alt="Spotify" />
+                        </a>
+                        <a
+                            href="https://music.apple.com/artist/soulmara/1723915183"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Apple Music"
+                        >
+                            <img src="./assets/icons/apple-music.svg" alt="Apple Music" />
+                        </a>
+                        <a
+                            href="https://www.youtube.com/@soulmara_mx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="YouTube"
+                        >
+                            <img src="./assets/icons/youtube.svg" alt="YouTube" />
+                        </a>
+                        <a
+                            href="https://www.tiktok.com/@soulmara_mx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="TikTok"
+                        >
+                            <img src="./assets/icons/tiktok.svg" alt="TikTok" />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/soulmara_mx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                        >
+                            <img src="./assets/icons/instagram.svg" alt="Instagram" />
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="site-footer__group site-footer__group--contact">
-          <a class="press__handle" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer">@soulmara_mx</a>
-          <a class="press__handle" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
-          <a class="press__handle" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
-        </div>
-        <div class="site-footer__group site-footer__group--socials site-footer__socials">
-          <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
-          <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
-          <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
-          <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
-          <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script src="./js/eventos-data.js"></script>
-  <script src="./js/eventos.js"></script>
-  <script src="./js/nav-hide.js"></script>
-</body>
+        <script src="./js/eventos-data.js"></script>
+        <script src="./js/eventos.js"></script>
+        <script src="./js/nav-hide.js"></script>
+    </body>
 </html>

@@ -1,102 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evento — SOULMARA</title>
-  <meta name="description" content="SOULMARA — galería del evento." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="icon" type="image/png" href="./assets/img/favicon-32.png" />
-  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
-</head>
-<body>
-  <!-- ============ MAIN SITE ============ -->
-  <div id="site" class="site is-visible reveal-hero reveal-layout">
-    <!-- Fixed, blurred, slowly-breathing background (same hero photo) -->
-    <div class="musica-bg" aria-hidden="true"></div>
-
-    <!-- Top navigation (same as home) -->
-    <header class="nav">
-      <nav class="nav__links nav__links--left" aria-label="Principal">
-        <a href="./musica.html">MÚSICA</a>
-        <a href="./press-kit.html">PRESS KIT</a>
-      </nav>
-
-      <a href="./index.html" class="nav__brand" aria-label="SoulMara inicio"
-         onclick="sessionStorage.setItem('skipIntro', '1')">
-        <img src="./assets/img/icon-white.png" alt="SoulMara" class="nav__brand-icon" />
-      </a>
-
-      <nav class="nav__links nav__links--right" aria-label="Secundaria">
-        <a href="./media.html">MEDIA</a>
-        <a href="./eventos.html" aria-current="page">EVENTOS</a>
-      </nav>
-
-      <span class="nav__socials">
-        <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
-        <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
-        <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
-        <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
-        <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
-      </span>
-    </header>
-
-    <!-- ============ EVENT GALLERY ============ -->
-    <main class="evento" id="top">
-      <a href="./eventos.html" class="evento__back">← Eventos</a>
-
-      <header class="evento__head">
-        <h1 class="evento__title" id="eventoTitle">Evento</h1>
-        <p class="evento__meta" id="eventoMeta"></p>
-      </header>
-
-      <!-- Scrolling photo strips (filled by JS from the event data) -->
-      <section class="strips" id="galleryStrips" aria-label="Galería del evento"></section>
-
-      <!-- Empty / not-found message (shown by JS when needed) -->
-      <p class="evento__empty" id="eventoEmpty" hidden>
-        Fotos próximamente.
-        <a href="./eventos.html">Volver a Eventos</a>.
-      </p>
-    </main>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <div class="site-footer__group">
-          <span class="site-footer__brand">
-            <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
-            SoulMara — 2026
-          </span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Evento — SOULMARA</title>
+        <meta name="description" content="SOULMARA — galería del evento." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="icon" type="image/png" href="./assets/img/favicon-32.png" />
+        <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+    </head>
+    <body>
+        <!-- ============ MAIN SITE ============ -->
+        <div id="site" class="site is-visible reveal-hero reveal-layout">
+            <!-- Fixed, blurred, slowly-breathing background (same hero photo) -->
+            <div class="musica-bg" aria-hidden="true" />
+            <!-- NAV -->
+            <header class="nav">
+                <nav class="nav__links nav__links--left" aria-label="Principal">
+                    <a href="./musica.html">MÚSICA</a>
+                    <a href="./press-kit.html">PRESS KIT</a>
+                </nav>
+                <a
+                    href="./index.html"
+                    class="nav__brand"
+                    aria-label="SoulMara inicio"
+                    onclick="sessionStorage.setItem('skipIntro', '1')"
+                >
+                    <img src="./assets/img/icon-white.png" alt="SoulMara" class="nav__brand-icon" />
+                </a>
+                <nav class="nav__links nav__links--right" aria-label="Secundaria">
+                    <a href="./media.html">MEDIA</a>
+                    <a href="./eventos.html" aria-current="page">EVENTOS</a>
+                </nav>
+                <span class="nav__socials">
+                    <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
+                    <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
+                    <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
+                    <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
+                    <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
+                </span>
+            </header>
+            <!-- ============ EVENT GALLERY ============ -->
+            <main class="evento" id="top">
+                <a href="./eventos.html" class="evento__back">← Eventos</a>
+                <header class="evento__head">
+                    <h1 class="evento__title" id="eventoTitle">Evento</h1>
+                    <p class="evento__meta" id="eventoMeta"></p>
+                </header>
+                <!-- Scrolling photo strips (filled by JS from the event data) -->
+                <section class="strips" id="galleryStrips" aria-label="Galería del evento"></section>
+                <!-- Empty / not-found message (shown by JS when needed) -->
+                <p class="evento__empty" id="eventoEmpty" hidden>
+                    Fotos próximamente.
+                    <a href="./eventos.html">Volver a Eventos</a>.
+                </p>
+            </main>
+            <!-- ============ FOOTER ============ -->
+            <footer class="site-footer">
+                <div class="site-footer__inner">
+                    <div class="site-footer__group">
+                        <span class="site-footer__brand">
+                            <img src="./assets/img/icon-white.png" alt="SoulMara" class="press__footer-icon" />
+                            SoulMara — 2026
+                        </span>
+                    </div>
+                    <div class="site-footer__group site-footer__group--contact">
+                        <a class="press__handle" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer">@soulmara_mx</a>
+                        <a class="press__handle" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
+                        <a class="press__handle" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
+                    </div>
+                    <div class="site-footer__group site-footer__group--socials site-footer__socials">
+                        <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
+                        <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
+                        <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
+                        <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
+                        <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="site-footer__group site-footer__group--contact">
-          <a class="press__handle" href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer">@soulmara_mx</a>
-          <a class="press__handle" href="mailto:soulmara.oficial.mx@hotmail.com">soulmara.oficial.mx@hotmail.com</a>
-          <a class="press__handle" href="mailto:soulmaramx@gmail.com">soulmaramx@gmail.com</a>
+        <!-- Lightbox for enlarging a photo -->
+        <div class="lightbox" id="lightbox" hidden>
+            <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">×</button>
+            <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+            <img class="lightbox__img" id="lightboxImg" alt="" />
+            <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Siguiente">›</button>
         </div>
-        <div class="site-footer__group site-footer__group--socials site-footer__socials">
-          <a href="https://open.spotify.com/artist/2iuMb7NKaiAgns6HmpCEC1" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><img src="./assets/icons/spotify.svg" alt="Spotify" /></a>
-          <a href="https://music.apple.com/artist/soulmara/1723915183" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><img src="./assets/icons/apple-music.svg" alt="Apple Music" /></a>
-          <a href="https://www.youtube.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="./assets/icons/youtube.svg" alt="YouTube" /></a>
-          <a href="https://www.tiktok.com/@soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="./assets/icons/tiktok.svg" alt="TikTok" /></a>
-          <a href="https://www.instagram.com/soulmara_mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="./assets/icons/instagram.svg" alt="Instagram" /></a>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Lightbox for enlarging a photo -->
-  <div class="lightbox" id="lightbox" hidden>
-    <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">×</button>
-    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Anterior">‹</button>
-    <img class="lightbox__img" id="lightboxImg" alt="" />
-    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Siguiente">›</button>
-  </div>
-
-  <script src="./js/eventos-data.js"></script>
-  <script src="./js/evento.js"></script>
-  <script src="./js/nav-hide.js"></script>
-</body>
+        <script src="./js/eventos-data.js"></script>
+        <script src="./js/evento.js"></script>
+        <script src="./js/nav-hide.js"></script>
+    </body>
 </html>
