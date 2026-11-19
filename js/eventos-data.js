@@ -183,6 +183,26 @@ window.SOULMARA_EVENTS = {
     city: "Los Ángeles, CA",
     cover: "./assets/eventos-cover-img/pasados/flyer-selines-la.jpg",
   },
+
+  // --- Events 12-13 (octubre 2026) ---------------------------
+  // Galerías procesadas: 1.jpg..N.jpg + thumbs/1.jpg..N.jpg
+  "monte-carlo": {
+    title: "Monte Carlo Fantasmas (Tour)",
+    date: "11 Octubre 2026",
+    venue: "Rock City",
+    city: "Mexicali, B.C.",
+    dir: "./assets/eventos-gallery-img/evento-12",
+    count: 13,
+  },
+
+  "escena-del-terror": {
+    title: "Escena del Terror",
+    date: "24 Octubre 2026",
+    venue: "Malgro Cervecería Tap Room",
+    city: "Mexicali, B.C.",
+    dir: "./assets/eventos-gallery-img/evento-13",
+    count: 13,
+  },
 };
 
 /* Helper: return an event's photo list as { full, thumb } pairs.
