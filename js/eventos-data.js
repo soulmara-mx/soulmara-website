@@ -168,30 +168,34 @@ window.SOULMARA_EVENTS = {
     ],
   },
 
+  // --- Events 12-15 (octubre 2026) ---------------------------
+  // Galerías procesadas: 1.jpg..N.jpg + thumbs/1.jpg..N.jpg
   "malgro-chucho": {
     title: "Chucho Rivas: Ojalá que nunca vengas a este tour",
     date: "3 Octubre 2026",
     venue: "Malgro Tap Room",
     city: "Mexicali, B.C.",
     cover: "./assets/eventos-cover-img/pasados/flyer-chucho.png",
+    dir: "./assets/eventos-gallery-img/evento-12",
+    count: 11,
   },
 
   "love-song-bar-la": {
     title: "An early halloween takeover with Selines",
-    date: "4 Octubre 2026",
+    date: "7 Octubre 2026",
     venue: "The Love Song Bar",
     city: "Los Ángeles, CA",
     cover: "./assets/eventos-cover-img/pasados/flyer-selines-la.jpg",
+    dir: "./assets/eventos-gallery-img/evento-13",
+    count: 22,
   },
 
-  // --- Events 12-13 (octubre 2026) ---------------------------
-  // Galerías procesadas: 1.jpg..N.jpg + thumbs/1.jpg..N.jpg
   "monte-carlo": {
     title: "Monte Carlo Fantasmas (Tour)",
     date: "11 Octubre 2026",
     venue: "Rock City",
     city: "Mexicali, B.C.",
-    dir: "./assets/eventos-gallery-img/evento-12",
+    dir: "./assets/eventos-gallery-img/evento-14",
     count: 13,
   },
 
@@ -200,7 +204,7 @@ window.SOULMARA_EVENTS = {
     date: "24 Octubre 2026",
     venue: "Malgro Cervecería Tap Room",
     city: "Mexicali, B.C.",
-    dir: "./assets/eventos-gallery-img/evento-13",
+    dir: "./assets/eventos-gallery-img/evento-15",
     count: 13,
   },
 };
